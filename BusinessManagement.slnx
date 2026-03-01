@@ -1,0 +1,9 @@
+<Solution>
+  <Folder Name="/BusinessManagament.API/">
+    <Project Path="BusinessManagement.Application/BusinessManagement.Application.csproj" />
+    <Project Path="BusinessManagement.Domain/BusinessManagement.Domain.csproj" />
+    <Project Path="BusinessManagement.DTO/BusinessManagement.DTO.csproj" />
+    <Project Path="BusinessManagement.Persistence/BusinessManagement.Persistence.csproj" />
+    <Project Path="BusinessManagement.RestFullApi/BusinessManagement.RestFullApi.csproj" />
+  </Folder>
+</Solution>
