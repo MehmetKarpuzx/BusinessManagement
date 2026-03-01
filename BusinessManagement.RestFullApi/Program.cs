@@ -1,14 +1,24 @@
-var builder = WebApplication.CreateBuilder(args);
+using BusinessManagement.Application.Interfaces;
+using BusinessManagement.Application.Services;
+using BusinessManagement.Persistence.Contexts;
+using Microsoft.EntityFrameworkCore;
 
-// Add services to the container.
+var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddDbContext<BusinessManagementDbContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("BusinessMng")));
+
+builder.Services.AddScoped<IBranchServices,BranchServices>();
+
+
+
 
 builder.Services.AddControllers();
-// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
+
 builder.Services.AddOpenApi();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+
 if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
