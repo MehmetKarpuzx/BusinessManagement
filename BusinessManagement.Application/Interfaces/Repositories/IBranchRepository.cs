@@ -4,9 +4,9 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace BusinessManagement.Application.Interfaces
+namespace BusinessManagement.Application.Interfaces.Repositories
 {
-    public interface IBranchServices
+    public interface IBranchRepository
     {
         Task<List<ResponseBranchDto>> GetAllBranchesAsync();
     }

@@ -1,28 +1,29 @@
-using BusinessManagement.Application.Interfaces;
-using BusinessManagement.Application.Services;
 using BusinessManagement.Persistence.Contexts;
+using BusinessManagement.Persistence.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
+using BusinessManagement.Application.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<BusinessManagementDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("BusinessMng")));
 
-builder.Services.AddScoped<IBranchServices,BranchServices>();
-
+builder.Services.AddPersistenceServices();
+builder.Services.AddApplicationServices();
 
 
 
 builder.Services.AddControllers();
-
-builder.Services.AddOpenApi();
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-
 if (app.Environment.IsDevelopment())
 {
-    app.MapOpenApi();
+    app.UseSwagger();
+    app.UseSwaggerUI();
 }
+
 
 app.UseHttpsRedirection();
 
