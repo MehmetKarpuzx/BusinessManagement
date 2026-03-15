@@ -1,4 +1,4 @@
-﻿using BusinessManagement.Application.Interfaces.Repositories;
+using BusinessManagement.Application.Interfaces.Repositories;
 using BusinessManagement.Domain.Entities;
 using BusinessManagement.DTO.CargoCompanyDTOs;
 using BusinessManagement.Persistence.Contexts;
@@ -60,7 +60,7 @@ namespace BusinessManagement.Persistence.Repositories
 
         }
 
-        public async Task<UpdateCargoCompanyDto> UpdateCargoCompanyAsync(UpdateCargoCompanyDto updateCargoCompanyDto, int id)
+        public async Task<UpdateCargoCompanyDto> UpdateCargoCompanyAsync(int id, UpdateCargoCompanyDto updateCargoCompanyDto)
         {
             var cargoCompany = _context.CargoCompanies.Find(id);
             if (cargoCompany == null || cargoCompany.IsDeleted)
