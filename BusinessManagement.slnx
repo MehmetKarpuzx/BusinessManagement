@@ -1,9 +1,16 @@
 <Solution>
-  <Folder Name="/BusinessManagament.API/">
+  <Folder Name="/BusinessManagEment.API/">
     <Project Path="BusinessManagement.Application/BusinessManagement.Application.csproj" />
     <Project Path="BusinessManagement.Domain/BusinessManagement.Domain.csproj" />
     <Project Path="BusinessManagement.DTO/BusinessManagement.DTO.csproj" />
     <Project Path="BusinessManagement.Persistence/BusinessManagement.Persistence.csproj" />
     <Project Path="BusinessManagement.RestFullApi/BusinessManagement.RestFullApi.csproj" />
+  </Folder>
+  <Folder Name="/BusinessManagement.MVC/">
+    <Project Path="BusinessManagement.MVC.Application/BusinessManagement.MVC.Application.csproj" Id="dd861113-a5f2-45c1-9bc4-e182fba981ee" />
+    <Project Path="BusinessManagement.MVC.Domain/BusinessManagement.MVC.Domain.csproj" Id="3fd325a3-bfc7-4f07-a438-89ec2871fc4a" />
+    <Project Path="BusinessManagement.MVC.DTO/BusinessManagement.MVC.DTO.csproj" Id="6c3c396a-dbb5-47ea-9194-75f5ee99880a" />
+    <Project Path="BusinessManagement.MVC.Persistence/BusinessManagement.MVC.Persistence.csproj" Id="a1202494-8c9c-452d-8722-1f6cc69ee877" />
+    <Project Path="BusinessManagement.MVC.WebApp/BusinessManagement.MVC.WebApp.csproj" Id="c7df2daa-44fb-41c0-9fa5-22e58b7d2560" />
   </Folder>
 </Solution>

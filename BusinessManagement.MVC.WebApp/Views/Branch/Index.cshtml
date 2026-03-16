@@ -1,0 +1,69 @@
+@model List<BusinessManagement.MVC.DTO.BranchDTOs.ResultBranchDto>
+@{
+    ViewData["Title"] = "Branches";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h2 class="fw-bold mb-0">
+        <i class="fa-solid fa-code-branch text-primary me-2"></i>Þube Yönetimi
+    </h2>
+    <a asp-action="Create" class="btn btn-primary shadow-sm">
+        <i class="fa-solid fa-plus me-1"></i> Yeni Þube Ekle
+    </a>
+</div>
+
+<div class="glass-card fade-in-up">
+    @if (!Model.Any())
+    {
+        <div class="text-center py-5">
+            <i class="fa-solid fa-folder-open fa-3x text-muted mb-3"></i>
+            <h5 class="text-muted">Þubeler bulunamadý!</h5>
+        </div>
+    }
+    else
+    {
+        <div class="table-wrapper">
+            <table class="table table-hover mb-0">
+                <thead>
+                    <tr>
+                        <th class="ps-4">Id</th>
+                        <th>Ýsim</th>
+                        <th>Kod</th>
+                        <th>Telefon Numarasý</th>
+                        <th>Adres</th>
+                        <th class="text-end pe-4">Ýþlemler</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td class="ps-4 fw-medium">#@item.Id</td>
+                            <td>
+                                <div class="d-flex align-items-center">
+                                    <div class="avatar bg-primary bg-opacity-10 text-primary rounded-circle me-3 d-flex justify-content-center align-items-center" style="width: 40px; height: 40px;">
+                                        <i class="fa-solid fa-building"></i>
+                                    </div>
+                                    <span class="fw-semibold">@item.Name</span>
+                                </div>
+                            </td>
+                            <td><span class="badge bg-secondary">@(item.Code?.ToString() ?? "N/A")</span></td>
+                            <td><i class="fa-solid fa-phone fa-sm text-muted me-2"></i>@(item.PhoneNumber ?? "-")</td>
+                            <td><i class="fa-solid fa-location-dot fa-sm text-muted me-2"></i>@(item.Address ?? "-")</td>
+                            <td class="text-end pe-4">
+                                <a asp-action="Update" asp-route-id="@item.Id" class="btn btn-warning btn-sm me-2" title="Edit">
+                                    <i class="fa-solid fa-pen-to-square"></i>
+                                </a>
+                                <form asp-action="Delete" asp-route-id="@item.Id" method="post" class="d-inline" onsubmit="return confirm('Bu þubeyi kaldýrmak istediðinize emin misiniz?');">
+                                    <button type="submit" class="btn btn-danger btn-sm" title="Delete">
+                                        <i class="fa-solid fa-trash"></i>
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+</div>
