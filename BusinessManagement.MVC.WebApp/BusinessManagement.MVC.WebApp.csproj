@@ -11,4 +11,9 @@
     <Folder Include="Views\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\BusinessManagement.MVC.Application\BusinessManagement.MVC.Application.csproj" />
+    <ProjectReference Include="..\BusinessManagement.MVC.DTO\BusinessManagement.MVC.DTO.csproj" />
+  </ItemGroup>
+
 </Project>

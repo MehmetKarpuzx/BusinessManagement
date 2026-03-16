@@ -1,0 +1,65 @@
+@model BusinessManagement.MVC.DTO.BranchDTOs.UpdateBranchDto
+@{
+    ViewData["Title"] = "Edit Branch";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-4 fade-in-up">
+    <h2 class="fw-bold mb-0">
+        <i class="fa-solid fa-pen-to-square text-warning me-2"></i>Edit Branch #@Model.Id
+    </h2>
+    <a asp-action="Index" class="btn btn-secondary shadow-sm">
+        <i class="fa-solid fa-arrow-left me-1"></i> Listeye Dön
+    </a>
+</div>
+
+<div class="row fade-in-up" style="animation-delay: 0.1s;">
+    <div class="col-lg-6 col-md-8">
+        <div class="glass-card border-warning border-opacity-25">
+            <h4 class="mb-4 text-gradient"><i class="fa-solid fa-building me-2"></i>Güncelleme Detayları</h4>
+            <form asp-action="Update">
+                <input type="hidden" asp-for="Id" />
+                
+                <div class="form-group mb-4">
+                    <label asp-for="Name" class="control-label mb-2"><i class="fa-solid fa-building me-1"></i> Şube Adı</label>
+                    <input asp-for="Name" class="form-control" />
+                    <span asp-validation-for="Name" class="text-danger small mt-1 d-block"></span>
+                </div>
+                
+                <div class="row">
+                    <div class="col-md-6 form-group mb-4">
+                        <label asp-for="Code" class="control-label mb-2"><i class="fa-solid fa-hashtag me-1"></i> Şube Kodu</label>
+                        <input asp-for="Code" class="form-control" type="number" />
+                        <span asp-validation-for="Code" class="text-danger small mt-1 d-block"></span>
+                    </div>
+                    
+                    <div class="col-md-6 form-group mb-4">
+                        <label asp-for="PhoneNumber" class="control-label mb-2"><i class="fa-solid fa-phone me-1"></i> Telefon Numarası</label>
+                        <input asp-for="PhoneNumber" class="form-control" />
+                        <span asp-validation-for="PhoneNumber" class="text-danger small mt-1 d-block"></span>
+                    </div>
+                </div>
+
+                <div class="form-group mb-4">
+                    <label asp-for="Address" class="control-label mb-2"><i class="fa-solid fa-location-dot me-1"></i> Adres</label>
+                    <textarea asp-for="Address" class="form-control" rows="3"></textarea>
+                    <span asp-validation-for="Address" class="text-danger small mt-1 d-block"></span>
+                </div>
+                
+                <div class="form-group pt-2">
+                    <button type="submit" class="btn btn-warning w-100 py-2">
+                        <i class="fa-solid fa-save me-1"></i> Değişiklikleri Kaydet
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <div class="col-lg-6 col-md-4 d-none d-md-flex flex-column align-items-center justify-content-center">
+        <div class="text-center opacity-50 mb-3">
+            <i class="fa-solid fa-map-location-dot fa-10x text-warning"></i>
+        </div>
+        <div class="glass-card border-warning border-opacity-10 text-center w-75 p-3">
+            <p class="mb-0 text-muted"><i class="fa-solid fa-circle-info me-1"></i> Yapılan değişiklikler sisteme anında yansır.</p>
+        </div>
+    </div>
+</div>

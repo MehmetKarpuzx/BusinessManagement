@@ -1,0 +1,62 @@
+@model BusinessManagement.MVC.DTO.BranchDTOs.AddBranchDto
+@{
+    ViewData["Title"] = "Þube Oluþturma";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-4 fade-in-up">
+    <h2 class="fw-bold mb-0">
+        <i class="fa-solid fa-plus-circle text-primary me-2"></i>Yeni Þube Oluþtur
+    </h2>
+    <a asp-action="Index" class="btn btn-secondary shadow-sm">
+        <i class="fa-solid fa-arrow-left me-1"></i> Listeye Dön
+    </a>
+</div>
+
+<div class="row fade-in-up" style="animation-delay: 0.1s;">
+    <div class="col-lg-6 col-md-8">
+        <div class="glass-card">
+            <h4 class="mb-4 text-gradient"><i class="fa-solid fa-info-circle me-2"></i>Þube Bilgileri</h4>
+            <form asp-action="Create">
+                <div class="form-group mb-4">
+                    <label asp-for="Name" class="control-label mb-2"><i class="fa-solid fa-building me-1"></i>Þube Ýsmi</label>
+                    <input asp-for="Name" class="form-control" placeholder="Üniversite Þube..." />
+                    <span asp-validation-for="Name" class="text-danger small mt-1 d-block"></span>
+                </div>
+                
+                <div class="row">
+                    <div class="col-md-6 form-group mb-4">
+                        <label asp-for="Code" class="control-label mb-2"><i class="fa-solid fa-hashtag me-1"></i> Þube Kodu(opsiyonel)</label>
+                        <input asp-for="Code" class="form-control" type="number" placeholder="001" />
+                        <span asp-validation-for="Code" class="text-danger small mt-1 d-block"></span>
+                    </div>
+                    
+                    <div class="col-md-6 form-group mb-4">
+                        <label asp-for="PhoneNumber" class="control-label mb-2"><i class="fa-solid fa-phone me-1"></i> Telefon Numarasý</label>
+                        <input asp-for="PhoneNumber" class="form-control" placeholder="5..." />
+                        <span asp-validation-for="PhoneNumber" class="text-danger small mt-1 d-block"></span>
+                    </div>
+                </div>
+
+                <div class="form-group mb-4">
+                    <label asp-for="Address" class="control-label mb-2"><i class="fa-solid fa-location-dot me-1"></i> Adres</label>
+                    <textarea asp-for="Address" class="form-control" rows="3" placeholder="Tam Adresi yazýnýz..."></textarea>
+                    <span asp-validation-for="Address" class="text-danger small mt-1 d-block"></span>
+                </div>
+                
+                <div class="form-group pt-2">
+                    <button type="submit" class="btn btn-primary w-100 py-2">
+                        <i class="fa-solid fa-check-circle me-1"></i> Þube Ekle
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <div class="col-lg-6 col-md-4 d-none d-md-flex align-items-center justify-content-center">
+        <div class="text-center opacity-50">
+            <i class="fa-solid fa-code-branch fa-10x mb-4 text-primary"></i>
+            <h4>Aðýnýzý Geniþletin!</h4>
+            <p class="text-muted">Sisteme yeni þube eklemek için zorunlu bilgileri doldurun.</p>
+        </div>
+    </div>
+</div>
