@@ -1,0 +1,60 @@
+@model BusinessManagement.MVC.DTO.ProductionDTOs.AddProductionDto
+@{
+    ViewData["Title"] = "Üretim Ekle";
+}
+
+<div class="glass-card p-4">
+    <div class="mb-4">
+        <h2 class="fw-bold mb-0">
+            <i class="fa-solid fa-plus text-primary me-2"></i>Yeni Üretim Kaydı Ekle
+        </h2>
+        <p class="text-muted">Üretim detaylarını aşağıdan girebilirsiniz.</p>
+    </div>
+
+    <form asp-action="AddProduction" method="post">
+        <div class="row g-3">
+            <div class="col-md-6">
+                <label asp-for="ProductId" class="form-label fw-semibold">Ürün ID</label>
+                <input asp-for="ProductId" type="number" class="form-control glass-input" required>
+            </div>
+            <div class="col-md-6">
+                <label asp-for="BranchId" class="form-label fw-semibold">Şube ID</label>
+                <input asp-for="BranchId" type="number" class="form-control glass-input" required>
+            </div>
+            
+            <div class="col-md-4">
+                <label asp-for="Amount" class="form-label fw-semibold">Miktar</label>
+                <input asp-for="Amount" type="number" class="form-control glass-input" required>
+            </div>
+            <div class="col-md-4">
+                <label asp-for="UnitTypeId" class="form-label fw-semibold">Birim Tipi ID</label>
+                <input asp-for="UnitTypeId" type="number" class="form-control glass-input" required>
+            </div>
+            <div class="col-md-4">
+                <label asp-for="CostPrice" class="form-label fw-semibold">Birim Maliyet</label>
+                <input asp-for="CostPrice" type="number" class="form-control glass-input" required>
+            </div>
+
+            <div class="col-md-4">
+                <label asp-for="TotalPrice" class="form-label fw-semibold">Toplam Maliyet</label>
+                <input asp-for="TotalPrice" type="number" class="form-control glass-input" required>
+            </div>
+            <div class="col-md-8">
+                <label asp-for="Description" class="form-label fw-semibold">Açıklama</label>
+                <input asp-for="Description" class="form-control glass-input">
+            </div>
+
+            <div class="col-md-6">
+                <label asp-for="CreateDate" class="form-label fw-semibold">Üretim Tarihi</label>
+                <input asp-for="CreateDate" type="date" class="form-control glass-input" required value="@DateTime.Now.ToString("yyyy-MM-dd")">
+            </div>
+
+            <div class="col-12 mt-4">
+                <div class="d-flex gap-2 justify-content-end">
+                    <a asp-action="Index" class="btn btn-outline-secondary px-4">İptal</a>
+                    <button type="submit" class="btn btn-primary px-4">Kaydet</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

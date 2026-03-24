@@ -1,0 +1,78 @@
+@model BusinessManagement.MVC.DTO.CustomerDTOs.AddCustomerDto
+@{
+    ViewData["Title"] = "Müşteri Ekle";
+}
+
+<div class="glass-card p-4">
+    <div class="mb-4">
+        <h2 class="fw-bold mb-0">
+            <i class="fa-solid fa-user-plus text-primary me-2"></i>Yeni Müşteri Ekle
+        </h2>
+        <p class="text-muted">Lütfen müşteri bilgilerini eksiksiz doldurunuz.</p>
+    </div>
+
+    <form asp-action="AddCustomer" method="post">
+        <div class="row g-3">
+            <div class="col-md-6">
+                <label asp-for="Name" class="form-label fw-semibold">Adı</label>
+                <input asp-for="Name" class="form-control glass-input" placeholder="Müşteri adını giriniz" required>
+            </div>
+            <div class="col-md-6">
+                <label asp-for="Surname" class="form-label fw-semibold">Soyadı</label>
+                <input asp-for="Surname" class="form-control glass-input" placeholder="Müşteri soyadını giriniz" required>
+            </div>
+            
+            <div class="col-md-4">
+                <label asp-for="PhoneNumber" class="form-label fw-semibold">Telefon</label>
+                <input asp-for="PhoneNumber" class="form-control glass-input" placeholder="Örn: 05xx xxx xx xx" required>
+            </div>
+            <div class="col-md-4">
+                <label asp-for="Email" class="form-label fw-semibold">Email</label>
+                <input asp-for="Email" type="email" class="form-control glass-input" placeholder="example@mail.com">
+            </div>
+            <div class="col-md-4">
+                <label asp-for="CustomerTypeId" class="form-label fw-semibold">Müşteri Tipi ID</label>
+                <input asp-for="CustomerTypeId" type="number" class="form-control glass-input" required>
+                <small class="text-muted">Müşteri tipi listesinden uygun ID'yi giriniz.</small>
+            </div>
+
+            <div class="col-md-4">
+                <label asp-for="City" class="form-label fw-semibold">Şehir</label>
+                <input asp-for="City" class="form-control glass-input" placeholder="Örn: İstanbul">
+            </div>
+            <div class="col-md-8">
+                <label asp-for="Adress" class="form-label fw-semibold">Adres</label>
+                <input asp-for="Adress" class="form-control glass-input" placeholder="Tam adresi giriniz">
+            </div>
+
+            <div class="col-md-4">
+                <label asp-for="Tckn" class="form-label fw-semibold">TCKN</label>
+                <input asp-for="Tckn" class="form-control glass-input" placeholder="11 haneli">
+            </div>
+            <div class="col-md-4">
+                <label asp-for="TaxNumber" class="form-label fw-semibold">Vergi No</label>
+                <input asp-for="TaxNumber" class="form-control glass-input">
+            </div>
+            <div class="col-md-4">
+                <label asp-for="TaxOffice" class="form-label fw-semibold">Vergi Dairesi</label>
+                <input asp-for="TaxOffice" class="form-control glass-input">
+            </div>
+
+            <div class="col-md-6">
+                <label asp-for="RegistrationNumber" class="form-label fw-semibold">Kayıt No</label>
+                <input asp-for="RegistrationNumber" class="form-control glass-input">
+            </div>
+            <div class="col-md-6">
+                <label asp-for="Description" class="form-label fw-semibold">Açıklama</label>
+                <input asp-for="Description" class="form-control glass-input">
+            </div>
+
+            <div class="col-12 mt-4">
+                <div class="d-flex gap-2 justify-content-end">
+                    <a asp-action="Index" class="btn btn-outline-secondary px-4">İptal</a>
+                    <button type="submit" class="btn btn-primary px-4">Kaydet</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
