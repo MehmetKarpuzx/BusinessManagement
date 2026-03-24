@@ -24,7 +24,7 @@ namespace BusinessManagement.Persistence.Repositories
                 Name = addCargoCompanyDto.Name,
                 Description = addCargoCompanyDto.Description,
                 CreateDate = addCargoCompanyDto.CreateDate,
-                IsDeleted = addCargoCompanyDto.IsDeleted
+               
             };
             _context.CargoCompanies.Add(cargoCompany);
             await _context.SaveChangesAsync();
@@ -63,13 +63,13 @@ namespace BusinessManagement.Persistence.Repositories
         public async Task<UpdateCargoCompanyDto> UpdateCargoCompanyAsync(int id, UpdateCargoCompanyDto updateCargoCompanyDto)
         {
             var cargoCompany = _context.CargoCompanies.Find(id);
-            if (cargoCompany == null || cargoCompany.IsDeleted)
+            if (cargoCompany == null )
             {
                 throw new KeyNotFoundException($"Kargo şirketi bulunamadı Kargo Şirketi ID = {id}  (404)");
             }
             var cargCompany = new CargoCompany
             {
-                Id = id,
+             
                 Name = updateCargoCompanyDto.Name,
                 Description = updateCargoCompanyDto.Description,
                 CreateDate = cargoCompany.CreateDate,

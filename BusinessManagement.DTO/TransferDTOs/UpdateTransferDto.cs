@@ -7,7 +7,7 @@ namespace BusinessManagement.DTO.TransferDTOs
     public class UpdateTransferDto
     {
 
-        public int Id { get; set; }
+     
         public int ProductionId { get; set; }
         public int TransferAmount { get; set; }
         public int BranchId { get; set; }
