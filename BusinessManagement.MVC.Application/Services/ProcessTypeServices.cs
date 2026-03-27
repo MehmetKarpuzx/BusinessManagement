@@ -22,7 +22,7 @@ namespace BusinessManagement.MVC.Application.Services
 
         public async Task<List<ResultProcessTypeDto>> GetAllProcessTypesAsync()
         {
-            var response = await _httpClient.GetAsync(_baseUrl + "ProcessType");
+            var response = await _httpClient.GetAsync(_baseUrl + "ProcessType/GetAll");
             if (response.IsSuccessStatusCode)
             {
                 var content = await response.Content.ReadAsStringAsync();
@@ -35,7 +35,7 @@ namespace BusinessManagement.MVC.Application.Services
 
         public async Task<AddProcessTypeDto> AddProcessTypeAsync(AddProcessTypeDto addProcessTypeDto)
         {
-            var response = await _httpClient.PostAsJsonAsync(_baseUrl + "ProcessType", addProcessTypeDto);
+            var response = await _httpClient.PostAsJsonAsync(_baseUrl + "ProcessType/AddProcessType", addProcessTypeDto);
             if (response.IsSuccessStatusCode)
             {
                 var content = await response.Content.ReadAsStringAsync();

@@ -23,7 +23,7 @@ namespace BusinessManagement.MVC.Application.Services
 
         public async Task<List<ResultBranchDto>> GetAllBranchesAsync()
         {
-            var response = await _httpClient.GetAsync(_baseUrl + "Branch");
+            var response = await _httpClient.GetAsync(_baseUrl + "Branch/GetAll");
             if (response.IsSuccessStatusCode)
             {
                 var content = await response.Content.ReadAsStringAsync();
@@ -36,7 +36,7 @@ namespace BusinessManagement.MVC.Application.Services
 
         public async Task<AddBranchDto> AddBranchAsync(AddBranchDto addBranchDto)
         {
-            var response = await _httpClient.PostAsJsonAsync(_baseUrl + "Branch", addBranchDto);
+            var response = await _httpClient.PostAsJsonAsync(_baseUrl + "Branch/AddBranch", addBranchDto);
             if (response.IsSuccessStatusCode)
             {
                 var content = await response.Content.ReadAsStringAsync();

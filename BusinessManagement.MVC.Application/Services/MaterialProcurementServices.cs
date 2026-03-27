@@ -22,7 +22,7 @@ namespace BusinessManagement.MVC.Application.Services
 
         public async Task<List<ResultMaterialProcurementDto>> GetAllMaterialProcurementsAsync()
         {
-            var response = await _httpClient.GetAsync(_baseUrl + "MaterialProcurement");
+            var response = await _httpClient.GetAsync(_baseUrl + "MaterialProcurement/GetAll");
             if (response.IsSuccessStatusCode)
             {
                 var content = await response.Content.ReadAsStringAsync();
@@ -35,7 +35,7 @@ namespace BusinessManagement.MVC.Application.Services
 
         public async Task<AddMaterialProcurementDto> AddMaterialProcurementAsync(AddMaterialProcurementDto addMaterialProcurementDto)
         {
-            var response = await _httpClient.PostAsJsonAsync(_baseUrl + "MaterialProcurement", addMaterialProcurementDto);
+            var response = await _httpClient.PostAsJsonAsync(_baseUrl + "MaterialProcurement/AddMaterialProcurement", addMaterialProcurementDto);
             if (response.IsSuccessStatusCode)
             {
                 var content = await response.Content.ReadAsStringAsync();

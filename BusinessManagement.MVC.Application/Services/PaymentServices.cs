@@ -22,7 +22,7 @@ namespace BusinessManagement.MVC.Application.Services
 
         public async Task<List<ResultPaymentDto>> GetAllPaymentsAsync()
         {
-            var response = await _httpClient.GetAsync(_baseUrl + "Payment");
+            var response = await _httpClient.GetAsync(_baseUrl + "Payment/GetAll");
             if (response.IsSuccessStatusCode)
             {
                 var content = await response.Content.ReadAsStringAsync();
@@ -35,7 +35,7 @@ namespace BusinessManagement.MVC.Application.Services
 
         public async Task<AddPaymentDto> AddPaymentAsync(AddPaymentDto addPaymentDto)
         {
-            var response = await _httpClient.PostAsJsonAsync(_baseUrl + "Payment", addPaymentDto);
+            var response = await _httpClient.PostAsJsonAsync(_baseUrl + "Payment/AddPayment", addPaymentDto);
             if (response.IsSuccessStatusCode)
             {
                 var content = await response.Content.ReadAsStringAsync();

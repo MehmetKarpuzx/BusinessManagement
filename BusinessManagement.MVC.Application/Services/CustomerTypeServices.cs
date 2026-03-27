@@ -22,7 +22,7 @@ namespace BusinessManagement.MVC.Application.Services
 
         public async Task<List<ResultCustomerTypeDto>> GetAllCustomerTypesAsync()
         {
-            var response = await _httpClient.GetAsync(_baseUrl + "CustomerType");
+            var response = await _httpClient.GetAsync(_baseUrl + "CustomerType/GetAll");
             if (response.IsSuccessStatusCode)
             {
                 var content = await response.Content.ReadAsStringAsync();
@@ -35,7 +35,7 @@ namespace BusinessManagement.MVC.Application.Services
 
         public async Task<AddCustomerTypeDto> AddCustomerTypeAsync(AddCustomerTypeDto addCustomerTypeDto)
         {
-            var response = await _httpClient.PostAsJsonAsync(_baseUrl + "CustomerType", addCustomerTypeDto);
+            var response = await _httpClient.PostAsJsonAsync(_baseUrl + "CustomerType/AddCustomerType", addCustomerTypeDto);
             if (response.IsSuccessStatusCode)
             {
                 var content = await response.Content.ReadAsStringAsync();

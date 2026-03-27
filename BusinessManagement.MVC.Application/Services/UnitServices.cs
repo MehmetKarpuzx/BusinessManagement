@@ -22,7 +22,7 @@ namespace BusinessManagement.MVC.Application.Services
 
         public async Task<List<ResultUnitDto>> GetAllUnitsAsync()
         {
-            var response = await _httpClient.GetAsync(_baseUrl + "Unit");
+            var response = await _httpClient.GetAsync(_baseUrl + "Unit/GetAll");
             if (response.IsSuccessStatusCode)
             {
                 var content = await response.Content.ReadAsStringAsync();
@@ -35,7 +35,7 @@ namespace BusinessManagement.MVC.Application.Services
 
         public async Task<AddUnitDto> AddUnitAsync(AddUnitDto addUnitDto)
         {
-            var response = await _httpClient.PostAsJsonAsync(_baseUrl + "Unit", addUnitDto);
+            var response = await _httpClient.PostAsJsonAsync(_baseUrl + "Unit/AddUnit", addUnitDto);
             if (response.IsSuccessStatusCode)
             {
                 var content = await response.Content.ReadAsStringAsync();

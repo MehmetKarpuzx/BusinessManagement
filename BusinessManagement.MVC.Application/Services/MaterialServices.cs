@@ -23,7 +23,7 @@ namespace BusinessManagement.MVC.Application.Services
 
         public async Task<List<ResultMaterialDto>> GetAllMaterialsAsync()
         {
-            var response = await _httpClient.GetAsync(_baseUrl + "Material");
+            var response = await _httpClient.GetAsync(_baseUrl + "Material/GetAll");
             if (response.IsSuccessStatusCode)
             {
                 var content = await response.Content.ReadAsStringAsync();
@@ -36,7 +36,7 @@ namespace BusinessManagement.MVC.Application.Services
 
         public async Task<AddMaterialDto> AddMaterialAsync(AddMaterialDto addMaterialDto)
         {
-            var response = await _httpClient.PostAsJsonAsync(_baseUrl + "Material", addMaterialDto);
+            var response = await _httpClient.PostAsJsonAsync(_baseUrl + "Material/AddMaterial", addMaterialDto);
             if (response.IsSuccessStatusCode)
             {
                 var content = await response.Content.ReadAsStringAsync();

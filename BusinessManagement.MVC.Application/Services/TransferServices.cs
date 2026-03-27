@@ -22,7 +22,7 @@ namespace BusinessManagement.MVC.Application.Services
 
         public async Task<List<ResultTransferDto>> GetAllTransfersAsync()
         {
-            var response = await _httpClient.GetAsync(_baseUrl + "Transfer");
+            var response = await _httpClient.GetAsync(_baseUrl + "Transfer/GetAll");
             if (response.IsSuccessStatusCode)
             {
                 var content = await response.Content.ReadAsStringAsync();
@@ -35,7 +35,7 @@ namespace BusinessManagement.MVC.Application.Services
 
         public async Task<AddTransferDto> AddTransferAsync(AddTransferDto addTransferDto)
         {
-            var response = await _httpClient.PostAsJsonAsync(_baseUrl + "Transfer", addTransferDto);
+            var response = await _httpClient.PostAsJsonAsync(_baseUrl + "Transfer/AddTransfer", addTransferDto);
             if (response.IsSuccessStatusCode)
             {
                 var content = await response.Content.ReadAsStringAsync();

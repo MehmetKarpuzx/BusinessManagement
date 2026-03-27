@@ -62,22 +62,26 @@ namespace BusinessManagement.Persistence.Repositories
 
         public async Task<UpdateCargoCompanyDto> UpdateCargoCompanyAsync(int id, UpdateCargoCompanyDto updateCargoCompanyDto)
         {
-            var cargoCompany = _context.CargoCompanies.Find(id);
-            if (cargoCompany == null )
+            try
             {
-                throw new KeyNotFoundException($"Kargo şirketi bulunamadı Kargo Şirketi ID = {id}  (404)");
+                var cargoCompany = _context.CargoCompanies.Find(id);
+                if (cargoCompany == null)
+                {
+                    throw new KeyNotFoundException($"Kargo şirketi bulunamadı Kargo Şirketi ID = {id}  (404)");
+                }
+                cargoCompany.Name = updateCargoCompanyDto.Name;
+                cargoCompany.Description = updateCargoCompanyDto.Description;
+
+                await _context.SaveChangesAsync();
+                return updateCargoCompanyDto;
             }
-            var cargCompany = new CargoCompany
+            catch (Exception ex)
             {
-             
-                Name = updateCargoCompanyDto.Name,
-                Description = updateCargoCompanyDto.Description,
-                CreateDate = cargoCompany.CreateDate,
-                IsDeleted = cargoCompany.IsDeleted
-            };
-            _context.Entry(cargoCompany).CurrentValues.SetValues(cargCompany);
-            await _context.SaveChangesAsync();
-            return updateCargoCompanyDto;
+
+
+                throw;
+            }
+            
         }
     }
 }

@@ -22,7 +22,7 @@ namespace BusinessManagement.MVC.Application.Services
 
         public async Task<List<ResultCustomerDto>> GetAllCustomersAsync()
         {
-            var response = await _httpClient.GetAsync(_baseUrl + "Customer");
+            var response = await _httpClient.GetAsync(_baseUrl + "Customer/GetAll");
             if (response.IsSuccessStatusCode)
             {
                 var content = await response.Content.ReadAsStringAsync();
@@ -35,7 +35,7 @@ namespace BusinessManagement.MVC.Application.Services
 
         public async Task<AddCustomerDto> AddCustomerAsync(AddCustomerDto addCustomerDto)
         {
-            var response = await _httpClient.PostAsJsonAsync(_baseUrl + "Customer", addCustomerDto);
+            var response = await _httpClient.PostAsJsonAsync(_baseUrl + "Customer/AddCustomer", addCustomerDto);
             if (response.IsSuccessStatusCode)
             {
                 var content = await response.Content.ReadAsStringAsync();

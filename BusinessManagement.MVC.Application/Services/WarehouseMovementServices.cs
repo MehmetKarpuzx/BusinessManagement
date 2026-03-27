@@ -22,7 +22,7 @@ namespace BusinessManagement.MVC.Application.Services
 
         public async Task<List<ResultWarehouseMovementDto>> GetAllWarehouseMovementsAsync()
         {
-            var response = await _httpClient.GetAsync(_baseUrl + "WarehouseMovement");
+            var response = await _httpClient.GetAsync(_baseUrl + "WarehouseMovement/GetAll");
             if (response.IsSuccessStatusCode)
             {
                 var content = await response.Content.ReadAsStringAsync();
@@ -35,7 +35,7 @@ namespace BusinessManagement.MVC.Application.Services
 
         public async Task<AddWarehouseMovementDto> AddWarehouseMovementAsync(AddWarehouseMovementDto addWarehouseMovementDto)
         {
-            var response = await _httpClient.PostAsJsonAsync(_baseUrl + "WarehouseMovement", addWarehouseMovementDto);
+            var response = await _httpClient.PostAsJsonAsync(_baseUrl + "WarehouseMovement/AddWarehouseMovement", addWarehouseMovementDto);
             if (response.IsSuccessStatusCode)
             {
                 var content = await response.Content.ReadAsStringAsync();
