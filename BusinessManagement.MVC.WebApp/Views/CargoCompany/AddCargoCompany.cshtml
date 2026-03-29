@@ -1,0 +1,33 @@
+@model BusinessManagement.MVC.DTO.CargoCompanyDTOs.AddCargoCompanyDto
+@{
+    ViewData["Title"] = "Kargo Firması Ekle";
+}
+
+<div class="glass-card p-4">
+    <div class="mb-4">
+        <h2 class="fw-bold mb-0">
+            <i class="fa-solid fa-plus text-primary me-2"></i>Yeni Kargo Firması Ekle
+        </h2>
+        <p class="text-muted">Lütfen firma bilgilerini giriniz.</p>
+    </div>
+
+    <form asp-action="AddCargoCompany" method="post">
+        <div class="row g-3">
+            <div class="col-md-12">
+                <label asp-for="Name" class="form-label fw-semibold">Firma Adı</label>
+                <input asp-for="Name" class="form-control glass-input" placeholder="Örn: MNG Kargo" required>
+            </div>
+            <div class="col-md-12">
+                <label asp-for="Description" class="form-label fw-semibold">Açıklama</label>
+                <textarea asp-for="Description" class="form-control glass-input" rows="3" placeholder="Açıklama giriniz..."></textarea>
+            </div>
+            
+            <div class="col-12 mt-4">
+                <div class="d-flex gap-2 justify-content-end">
+                    <a asp-action="Index" class="btn btn-outline-secondary px-4">İptal</a>
+                    <button type="submit" class="btn btn-primary px-4">Kaydet</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

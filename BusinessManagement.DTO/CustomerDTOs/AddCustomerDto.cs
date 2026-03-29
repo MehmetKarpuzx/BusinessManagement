@@ -13,6 +13,6 @@ namespace BusinessManagement.DTO.CustomerDTOs
         public int CustomerTypeId { get; set; }
         public string? Adress { get; set; }
         public DateTime CreateDate { get; set; }
-        public bool IsDeleted { get; set; }
+       
     }
 }

@@ -1,0 +1,51 @@
+@model BusinessManagement.MVC.DTO.ProductDTOs.AddProductDto
+@{
+    ViewData["Title"] = "Ürün Ekle";
+}
+
+<div class="glass-card p-4">
+    <div class="mb-4">
+        <h2 class="fw-bold mb-0">
+            <i class="fa-solid fa-plus text-primary me-2"></i>Yeni Ürün Ekle
+        </h2>
+        <p class="text-muted">Ürün detaylarını aşağıdan girebilirsiniz.</p>
+    </div>
+
+    <form asp-action="AddProduct" method="post">
+        <div class="row g-3">
+            <div class="col-md-6">
+                <label asp-for="Name" class="form-label fw-semibold">Ürün Adı</label>
+                <input asp-for="Name" class="form-control glass-input" placeholder="Ürün adını giriniz..." required>
+            </div>
+            <div class="col-md-6">
+                <label asp-for="PhotoUrl" class="form-label fw-semibold">Görsel URL</label>
+                <input asp-for="PhotoUrl" class="form-control glass-input" placeholder="https://...">
+            </div>
+            
+            <div class="col-md-4">
+                <label asp-for="PersonelPrice" class="form-label fw-semibold">Bireysel Fiyat</label>
+                <input asp-for="PersonelPrice" type="number" class="form-control glass-input" required>
+            </div>
+            <div class="col-md-4">
+                <label asp-for="CorporatePrice" class="form-label fw-semibold">Kurumsal Fiyat</label>
+                <input asp-for="CorporatePrice" type="number" class="form-control glass-input" required>
+            </div>
+            <div class="col-md-4">
+                <label asp-for="WholesalePrice" class="form-label fw-semibold">Toptan Fiyat</label>
+                <input asp-for="WholesalePrice" type="number" class="form-control glass-input" required>
+            </div>
+
+            <div class="col-md-12">
+                <label asp-for="Description" class="form-label fw-semibold">Açıklama</label>
+                <textarea asp-for="Description" class="form-control glass-input" rows="3"></textarea>
+            </div>
+
+            <div class="col-12 mt-4">
+                <div class="d-flex gap-2 justify-content-end">
+                    <a asp-action="Index" class="btn btn-outline-secondary px-4">İptal</a>
+                    <button type="submit" class="btn btn-primary px-4">Kaydet</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

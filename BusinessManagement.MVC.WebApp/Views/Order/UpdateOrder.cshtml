@@ -1,0 +1,69 @@
+@model BusinessManagement.MVC.DTO.OrderDTOs.UpdateOrderDto
+@{
+    ViewData["Title"] = "Siparişi Düzenle";
+}
+
+<div class="glass-card p-4">
+    <div class="mb-4">
+        <h2 class="fw-bold mb-0">
+            <i class="fa-solid fa-file-pen text-warning me-2"></i>Siparişi Düzenle
+        </h2>
+        <p class="text-muted">Sipariş detaylarını güncelleyebilirsiniz.</p>
+    </div>
+
+    <form asp-action="UpdateOrder" method="post">
+        <input type="hidden" asp-for="Id" />
+        <div class="row g-3">
+            <div class="col-md-6">
+                <label asp-for="CustomerId" class="form-label fw-semibold">Müşteri ID</label>
+                <input asp-for="CustomerId" type="number" class="form-control glass-input" required>
+            </div>
+            <div class="col-md-6">
+                <label asp-for="CargoCompanyId" class="form-label fw-semibold">Kargo Firması ID</label>
+                <input asp-for="CargoCompanyId" type="number" class="form-control glass-input" required>
+            </div>
+            
+            <div class="col-md-4">
+                <label asp-for="EmployeeId" class="form-label fw-semibold">Personel ID</label>
+                <input asp-for="EmployeeId" type="number" class="form-control glass-input" required>
+            </div>
+            <div class="col-md-4">
+                <label asp-for="BranchId" class="form-label fw-semibold">Şube ID</label>
+                <input asp-for="BranchId" type="number" class="form-control glass-input" required>
+            </div>
+            <div class="col-md-4">
+                <label asp-for="TotalAmount" class="form-label fw-semibold">Toplam Tutar</label>
+                <input asp-for="TotalAmount" type="number" class="form-control glass-input" required>
+            </div>
+
+            <div class="col-md-4">
+                <label asp-for="OrderDate" class="form-label fw-semibold">Sipariş Tarihi</label>
+                <input asp-for="OrderDate" type="date" class="form-control glass-input" required value="@Model.OrderDate.ToString("yyyy-MM-dd")">
+            </div>
+            <div class="col-md-4">
+                <label asp-for="EstimatedDeliveryDate" class="form-label fw-semibold">Tahmini Teslim</label>
+                <input asp-for="EstimatedDeliveryDate" type="date" class="form-control glass-input" value="@Model.EstimatedDeliveryDate?.ToString("yyyy-MM-dd")">
+            </div>
+            <div class="col-md-4">
+                <label asp-for="DeliveryDate" class="form-label fw-semibold">Teslim Tarihi</label>
+                <input asp-for="DeliveryDate" type="date" class="form-control glass-input" value="@Model.DeliveryDate?.ToString("yyyy-MM-dd")">
+            </div>
+
+            <div class="col-md-6">
+                <label asp-for="OrderStatus" class="form-label fw-semibold">Sipariş Durumu</label>
+                <select asp-for="OrderStatus" class="form-select glass-input" asp-items="Html.GetEnumSelectList<BusinessManagement.MVC.Domain.Enums.OrderStatus>()"></select>
+            </div>
+            <div class="col-md-6">
+                <label asp-for="Description" class="form-label fw-semibold">Açıklama</label>
+                <input asp-for="Description" class="form-control glass-input">
+            </div>
+
+            <div class="col-12 mt-4">
+                <div class="d-flex gap-2 justify-content-end">
+                    <a asp-action="Index" class="btn btn-outline-secondary px-4">İptal</a>
+                    <button type="submit" class="btn btn-warning px-4 text-white font-weight-bold">Güncelle</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

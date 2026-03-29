@@ -27,8 +27,8 @@ namespace BusinessManagement.Persistence.Repositories
                 Email = dto.Email,
                 Adress = dto.Adress,
                 Description = dto.Description,
-                CreateDate = dto.CreateDate,
-                IsDeleted = dto.IsDeleted
+                CreateDate = dto.CreateDate
+               
             };
             _context.Suppliers.Add(entity);
             await _context.SaveChangesAsync();

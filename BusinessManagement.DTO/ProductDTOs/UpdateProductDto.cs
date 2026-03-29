@@ -6,7 +6,7 @@ namespace BusinessManagement.DTO.ProductDTOs
 {
     public class UpdateProductDto
     {
-        public int Id { get; set; }
+       
         public string Name { get; set; }
         public string? PhotoUrl { get; set; }
         public int PersonelPrice { get; set; }

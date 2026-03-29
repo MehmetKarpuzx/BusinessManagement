@@ -6,7 +6,7 @@ namespace BusinessManagement.DTO.WarehouseMovementDTOs
 {
     public class UpdateWarehouseMovementDto
     {
-        public int Id { get; set; }
+      
         public int ProcessTypeId { get; set; }
         public int SupplierId { get; set; }
         public int MaterialId { get; set; }

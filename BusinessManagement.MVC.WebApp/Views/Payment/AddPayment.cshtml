@@ -1,0 +1,47 @@
+@model BusinessManagement.MVC.DTO.PaymentDTOs.AddPaymentDto
+@{
+    ViewData["Title"] = "Ödeme Ekle";
+}
+
+<div class="glass-card p-4">
+    <div class="mb-4">
+        <h2 class="fw-bold mb-0">
+            <i class="fa-solid fa-money-bill-wave text-primary me-2"></i>Yeni Ödeme Ekle
+        </h2>
+        <p class="text-muted">Ödeme bilgilerini aşağıdan girebilirsiniz.</p>
+    </div>
+
+    <form asp-action="AddPayment" method="post">
+        <div class="row g-3">
+            <div class="col-md-6">
+                <label asp-for="OrderId" class="form-label fw-semibold">Sipariş ID</label>
+                <input asp-for="OrderId" type="number" class="form-control glass-input" required>
+            </div>
+            <div class="col-md-6">
+                <label asp-for="PaymentMethodId" class="form-label fw-semibold">Ödeme Yöntemi ID</label>
+                <input asp-for="PaymentMethodId" type="number" class="form-control glass-input" required>
+            </div>
+            
+            <div class="col-md-6">
+                <label asp-for="Amount" class="form-label fw-semibold">Tutar</label>
+                <input asp-for="Amount" type="number" class="form-control glass-input" required>
+            </div>
+            <div class="col-md-6">
+                <label asp-for="PaymentDate" class="form-label fw-semibold">Ödeme Tarihi</label>
+                <input asp-for="PaymentDate" type="date" class="form-control glass-input" required value="@DateTime.Now.ToString("yyyy-MM-dd")">
+            </div>
+
+            <div class="col-md-12">
+                <label asp-for="Description" class="form-label fw-semibold">Açıklama</label>
+                <textarea asp-for="Description" class="form-control glass-input" rows="3"></textarea>
+            </div>
+
+            <div class="col-12 mt-4">
+                <div class="d-flex gap-2 justify-content-end">
+                    <a asp-action="Index" class="btn btn-outline-secondary px-4">İptal</a>
+                    <button type="submit" class="btn btn-primary px-4">Kaydet</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

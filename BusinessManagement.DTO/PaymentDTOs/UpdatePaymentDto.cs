@@ -6,7 +6,7 @@ namespace BusinessManagement.DTO.PaymentDTOs
 {
     public class UpdatePaymentDto
     {
-        public int Id { get; set; }
+      
         public int CustomerId { get; set; }
         public int PaymentAmount { get; set; }
         public DateTime PaymentDate { get; set; }
