@@ -1,0 +1,52 @@
+@model BusinessManagement.MVC.DTO.PaymentDTOs.UpdatePaymentDto
+@{
+    ViewData["Title"] = "Ödemeyi Düzenle";
+}
+
+<div class="glass-card p-4">
+    <div class="mb-4">
+        <h2 class="fw-bold mb-0">
+            <i class="fa-solid fa-pen-to-square text-warning me-2"></i>Ödemeyi Düzenle
+        </h2>
+        <p class="text-muted">Ödeme kaydını güncelleyebilirsiniz.</p>
+    </div>
+
+    <form asp-action="UpdatePayment" method="post">
+        <input type="hidden" asp-for="Id" />
+        <div class="row g-3">
+            <div class="col-md-6">
+                <label asp-for="OrderId" class="form-label fw-semibold">Sipariş</label>
+                <select asp-for="OrderId" class="form-select glass-input" asp-items="@ViewBag.Orders" required>
+                    <option value="">Sipariş Seçiniz...</option>
+                </select>
+            </div>
+            <div class="col-md-6">
+                <label asp-for="PaymentMethodId" class="form-label fw-semibold">Ödeme Yöntemi</label>
+                <select asp-for="PaymentMethodId" class="form-select glass-input" asp-items="@ViewBag.PaymentMethods" required>
+                    <option value="">Ödeme Yöntemi Seçiniz...</option>
+                </select>
+            </div>
+            
+            <div class="col-md-6">
+                <label asp-for="Amount" class="form-label fw-semibold">Tutar</label>
+                <input asp-for="Amount" type="number" class="form-control glass-input" required>
+            </div>
+            <div class="col-md-6">
+                <label asp-for="PaymentDate" class="form-label fw-semibold">Ödeme Tarihi</label>
+                <input asp-for="PaymentDate" type="date" class="form-control glass-input" required value="@Model.PaymentDate.ToString("yyyy-MM-dd")">
+            </div>
+
+            <div class="col-md-12">
+                <label asp-for="Description" class="form-label fw-semibold">Açıklama</label>
+                <textarea asp-for="Description" class="form-control glass-input" rows="3"></textarea>
+            </div>
+
+            <div class="col-12 mt-4">
+                <div class="d-flex gap-2 justify-content-end">
+                    <a asp-action="Index" class="btn btn-outline-secondary px-4">İptal</a>
+                    <button type="submit" class="btn btn-warning px-4 text-white font-weight-bold">Güncelle</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

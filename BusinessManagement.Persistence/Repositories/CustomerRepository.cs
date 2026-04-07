@@ -28,8 +28,8 @@ namespace BusinessManagement.Persistence.Repositories
                 PhoneNumber = dto.PhoneNumber,
                 CustomerTypeId = dto.CustomerTypeId,
                 Adress = dto.Adress,
-                CreateDate = dto.CreateDate,
-                IsDeleted = dto.IsDeleted
+                CreateDate = dto.CreateDate
+               
             };
             _context.Customers.Add(entity);
             await _context.SaveChangesAsync();

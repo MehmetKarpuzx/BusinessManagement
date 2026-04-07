@@ -13,20 +13,20 @@ namespace BusinessManagement.RestFullApi.Controllers
         {
             _branchServices = branchServices;
         }
-        [HttpGet]
+        [HttpGet("GetAll")]
         public async Task<IActionResult> GetAll()
         {
             var branches = await _branchServices.GetAllBranchesAsync();
             return Ok(branches);
         }
-        [HttpPost]
+        [HttpPost("AddBranch")]
         public async Task<IActionResult> Add(AddBranchDto dto)
         {
             var addedBranch = await _branchServices.AddBranchAsync(dto);
             return Ok(addedBranch);
 
         }
-        [HttpPut("{id}")]
+        [HttpPut("Update {id}")]
         public async Task<IActionResult> Update( UpdateBranchDto dto, int id)
         {
             var updatedBranch = await _branchServices.UpdateBranchAsync(dto, id);

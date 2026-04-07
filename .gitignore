@@ -362,3 +362,6 @@ MigrationBackup/
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
 /BusinessManagement.RestFullApi/appsettings.json
+/BusinessManagement.MVC.WebApp/appsettings.json
+/BusinessManagement.MVC.WebApp/build_errors.txt
+/BusinessManagement.MVC.WebApp/build_errors_2.txt

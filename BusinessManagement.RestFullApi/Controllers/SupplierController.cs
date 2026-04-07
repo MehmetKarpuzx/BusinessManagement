@@ -15,14 +15,14 @@ namespace BusinessManagement.RestFullApi.Controllers
             _supplierServices = supplierServices;
         }
 
-        [HttpGet]
+        [HttpGet("GetAll")]
         public async Task<IActionResult> GetAll()
         {
             var entities = await _supplierServices.GetAllAsync();
             return Ok(entities);
         }
 
-        [HttpPost]
+        [HttpPost("AddSupplier")]
         public async Task<IActionResult> Add(AddSupplierDto dto)
         {
             var addedEntity = await _supplierServices.AddSupplierAsync(dto);

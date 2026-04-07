@@ -229,14 +229,13 @@ namespace BusinessManagement.Persistence.Migrations
                     b.Property<int>("BranchId")
                         .HasColumnType("int");
 
-                    b.Property<int>("CargoCompanyId")
+                    b.Property<int?>("CargoCompanyId")
                         .HasColumnType("int");
 
                     b.Property<string>("CargoDescription")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("CargoPrice")
+                    b.Property<int?>("CargoPrice")
                         .HasColumnType("int");
 
                     b.Property<int>("CustomerId")
@@ -246,10 +245,9 @@ namespace BusinessManagement.Persistence.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("DiscountDescription")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("DiscountPrice")
+                    b.Property<int?>("DiscountPrice")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("OrderDate")
@@ -264,7 +262,7 @@ namespace BusinessManagement.Persistence.Migrations
                     b.Property<int>("ProductId")
                         .HasColumnType("int");
 
-                    b.Property<int>("RemainderPrice")
+                    b.Property<int?>("RemainderPrice")
                         .HasColumnType("int");
 
                     b.Property<int>("TotalPrice")
@@ -408,7 +406,6 @@ namespace BusinessManagement.Persistence.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("ProductId")
@@ -423,6 +420,32 @@ namespace BusinessManagement.Persistence.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Productions");
+                });
+
+            modelBuilder.Entity("BusinessManagement.Domain.Entities.Rol", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Rols");
                 });
 
             modelBuilder.Entity("BusinessManagement.Domain.Entities.Supplier", b =>
@@ -502,7 +525,6 @@ namespace BusinessManagement.Persistence.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsDeleted")
@@ -515,6 +537,44 @@ namespace BusinessManagement.Persistence.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Units");
+                });
+
+            modelBuilder.Entity("BusinessManagement.Domain.Entities.User", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PasswordHash")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("RolId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Surname")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Username")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Users");
                 });
 
             modelBuilder.Entity("BusinessManagement.Domain.Entities.WarehouseMovement", b =>

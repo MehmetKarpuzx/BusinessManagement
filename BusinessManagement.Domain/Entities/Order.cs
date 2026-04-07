@@ -15,13 +15,13 @@ namespace BusinessManagement.Domain.Entities
         public int TotalPrice { get; set; }
         public DateTime OrderDate { get; set; }
         public OrderStatus OrderStatus { get; set; }
-        public int CargoCompanyId { get; set; }
-        public int CargoPrice { get; set; }
-        public string CargoDescription { get; set; }
-        public int DiscountPrice { get; set; }
-        public string DiscountDescription { get; set; }
+        public int? CargoCompanyId { get; set; }
+        public int? CargoPrice { get; set; }
+        public string? CargoDescription { get; set; }
+        public int? DiscountPrice { get; set; }
+        public string? DiscountDescription { get; set; }
         public int PaymentReceived { get; set; }
-        public int RemainderPrice { get; set; }
+        public int? RemainderPrice { get; set; }
         public string? Description { get; set; }
 
 

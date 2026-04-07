@@ -15,14 +15,14 @@ namespace BusinessManagement.RestFullApi.Controllers
             _processTypeServices = processTypeServices;
         }
 
-        [HttpGet]
+        [HttpGet("GetAll")]
         public async Task<IActionResult> GetAll()
         {
             var entities = await _processTypeServices.GetAllAsync();
             return Ok(entities);
         }
 
-        [HttpPost]
+        [HttpPost("AddProcessType")]
         public async Task<IActionResult> Add(AddProcessTypeDto dto)
         {
             var addedEntity = await _processTypeServices.AddProcessTypeAsync(dto);

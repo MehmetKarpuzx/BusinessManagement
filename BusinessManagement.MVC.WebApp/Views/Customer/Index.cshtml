@@ -1,0 +1,55 @@
+@model List<BusinessManagement.MVC.DTO.CustomerDTOs.ResultCustomerDto>
+@{
+    ViewData["Title"] = "Müşteriler";
+}
+
+<div class="glass-card p-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="fw-bold mb-0">
+            <i class="fa-solid fa-users text-primary me-2"></i>Müşteri Yönetimi
+        </h2>
+        <a asp-action="AddCustomer" class="btn btn-primary d-flex align-items-center gap-2">
+            <i class="fa-solid fa-user-plus"></i>
+            <span>Yeni Müşteri</span>
+        </a>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table custom-table">
+            <thead>
+                <tr>
+                    <th class="ps-4">Müşteri Adı</th>
+                    <th>Telefon</th>
+                    <th>Şehir</th>
+                    <th>Email</th>
+                    <th class="text-end pe-4">İşlemler</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td class="ps-4">
+                            <span class="fw-semibold">@item.Name @item.Surname</span>
+                        </td>
+                        <td><i class="fa-solid fa-phone fa-sm text-muted me-2"></i>@item.PhoneNumber</td>
+                        <td><i class="fa-solid fa-location-dot fa-sm text-muted me-2"></i>@item.City</td>
+                        <td><i class="fa-solid fa-envelope fa-sm text-muted me-2"></i>@item.Email</td>
+                        <td class="text-end pe-4">
+                            <div class="d-flex justify-content-end gap-2">
+                                <a asp-action="UpdateCustomer" asp-route-id="@item.Id" class="btn btn-warning btn-sm" title="Düzenle">
+                                    <i class="fa-solid fa-pen-to-square"></i>
+                                </a>
+                                <form asp-action="DeleteCustomer" asp-route-id="@item.Id" method="post" class="d-inline" onsubmit="return confirm('Bu müşteriyi silmek istediğinize emin misiniz?');">
+                                    <button type="submit" class="btn btn-danger btn-sm" title="Sil">
+                                        <i class="fa-solid fa-trash"></i>
+                                    </button>
+                                </form>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

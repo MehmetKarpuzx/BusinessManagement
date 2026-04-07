@@ -1,0 +1,95 @@
+@model BusinessManagement.MVC.DTO.MaterialProcurementDTOs.AddMaterialProcurementDto
+@{
+    ViewData["Title"] = "Tedarik Ekle";
+}
+
+<div class="glass-card p-4">
+    <div class="mb-4">
+        <h2 class="fw-bold mb-0">
+            <i class="fa-solid fa-cart-plus text-primary me-2"></i>Yeni Hammadde Tedariği Ekle
+        </h2>
+        <p class="text-muted">Tedarik detaylarını aşağıdan girebilirsiniz.</p>
+    </div>
+
+    <form asp-action="AddMaterialProcurement" method="post">
+        <div class="row g-3">
+            <div class="col-md-6">
+                <label asp-for="MaterialId" class="form-label fw-semibold">Hammadde</label>
+                <select asp-for="MaterialId" class="form-select glass-input" asp-items="@ViewBag.Materials" required>
+                    <option value="">Seçiniz...</option>
+                </select>
+            </div>
+            <div class="col-md-6">
+                <label asp-for="SupplierId" class="form-label fw-semibold">Tedarikçi</label>
+                <select asp-for="SupplierId" class="form-select glass-input" asp-items="@ViewBag.Suppliers" required>
+                    <option value="">Seçiniz...</option>
+                </select>
+            </div>
+            
+            <div class="col-md-4">
+                <label asp-for="Amount" class="form-label fw-semibold">Miktar</label>
+                <input asp-for="Amount" type="number" class="form-control glass-input" required>
+            </div>
+            <div class="col-md-4">
+                <label asp-for="UnitTypeId" class="form-label fw-semibold">Birim</label>
+                <select asp-for="UnitTypeId" class="form-select glass-input" asp-items="@ViewBag.Units" required>
+                    <option value="">Seçiniz...</option>
+                </select>
+            </div>
+            <div class="col-md-4">
+                <label asp-for="UnitPrice" class="form-label fw-semibold">Birim Fiyat</label>
+                <input asp-for="UnitPrice" type="number" class="form-control glass-input" required>
+            </div>
+
+            <div class="col-md-4">
+                <label asp-for="TotalPrice" class="form-label fw-semibold">Toplam Fiyat</label>
+                <input asp-for="TotalPrice" type="number" class="form-control glass-input" required>
+            </div>
+            <div class="col-md-4">
+                <label asp-for="InvoiceNo" class="form-label fw-semibold">Fatura No</label>
+                <input asp-for="InvoiceNo" type="number" class="form-control glass-input">
+            </div>
+            <div class="col-md-4">
+                <label asp-for="BranchId" class="form-label fw-semibold">Şube</label>
+                <select asp-for="BranchId" class="form-select glass-input" asp-items="@ViewBag.Branches" required>
+                    <option value="">Seçiniz...</option>
+                </select>
+            </div>
+
+            <div class="col-md-6">
+                <label asp-for="ProcurementDate" class="form-label fw-semibold">Tedarik Tarihi</label>
+                <input asp-for="ProcurementDate" type="date" class="form-control glass-input" required value="@DateTime.Now.ToString("yyyy-MM-dd")">
+            </div>
+            <div class="col-md-6">
+                <label asp-for="Description" class="form-label fw-semibold">Açıklama</label>
+                <input asp-for="Description" class="form-control glass-input">
+            </div>
+
+            <div class="col-12 mt-4">
+                <div class="d-flex gap-2 justify-content-end">
+                    <a asp-action="Index" class="btn btn-outline-secondary px-4">İptal</a>
+                    <button type="submit" class="btn btn-primary px-4">Kaydet</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const amountInput = document.getElementById('Amount');
+            const unitPriceInput = document.getElementById('UnitPrice');
+            const totalPriceInput = document.getElementById('TotalPrice');
+
+            function calculateTotal() {
+                const amount = parseFloat(amountInput.value) || 0;
+                const unitPrice = parseFloat(unitPriceInput.value) || 0;
+                totalPriceInput.value = (amount * unitPrice).toFixed(2);
+            }
+
+            amountInput.addEventListener('input', calculateTotal);
+            unitPriceInput.addEventListener('input', calculateTotal);
+        });
+    </script>
+}

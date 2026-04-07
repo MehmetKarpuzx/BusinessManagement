@@ -24,8 +24,8 @@ namespace BusinessManagement.Persistence.Repositories
             {
                 Name = dto.Name,
                 Description = dto.Description,
-                CreateDate = dto.CreateDate,
-                IsDeleted = dto.IsDeleted
+                CreateDate = DateTime.Now
+
             };
             _context.Units.Add(entity);
             await _context.SaveChangesAsync();

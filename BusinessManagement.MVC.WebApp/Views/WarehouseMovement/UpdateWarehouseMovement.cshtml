@@ -1,0 +1,77 @@
+@model BusinessManagement.MVC.DTO.WarehouseMovementDTOs.UpdateWarehouseMovementDto
+@{
+    ViewData["Title"] = "Hareketi Düzenle";
+}
+
+<div class="glass-card p-4">
+    <div class="mb-4">
+        <h2 class="fw-bold mb-0">
+            <i class="fa-solid fa-pen-to-square text-warning me-2"></i>Depo Hareketini Düzenle
+        </h2>
+        <p class="text-muted">Hareket detaylarını güncelleyebilirsiniz.</p>
+    </div>
+
+    <form asp-action="UpdateWarehouseMovement" method="post">
+        <input type="hidden" asp-for="Id" />
+        <div class="row g-3">
+            <div class="col-md-4">
+                <label asp-for="ProcessTypeId" class="form-label fw-semibold">İşlem Tipi</label>
+                <select asp-for="ProcessTypeId" class="form-select glass-input" asp-items="@ViewBag.ProcessTypes" required>
+                    <option value="">İşlem Seçiniz...</option>
+                </select>
+            </div>
+            <div class="col-md-4">
+                <label asp-for="SupplierId" class="form-label fw-semibold">Tedarikçi</label>
+                <select asp-for="SupplierId" class="form-select glass-input" asp-items="@ViewBag.Suppliers">
+                    <option value="">Tedarikçi Seçiniz...</option>
+                </select>
+            </div>
+            <div class="col-md-4">
+                <label asp-for="MaterialId" class="form-label fw-semibold">Hammadde</label>
+                <select asp-for="MaterialId" class="form-select glass-input" asp-items="@ViewBag.Materials" required>
+                    <option value="">Seçiniz...</option>
+                </select>
+            </div>
+            
+            <div class="col-md-4">
+                <label asp-for="Amount" class="form-label fw-semibold">Miktar</label>
+                <input asp-for="Amount" type="number" class="form-control glass-input" required>
+            </div>
+            <div class="col-md-4">
+                <label asp-for="UnitPrice" class="form-label fw-semibold">Birim Fiyat</label>
+                <input asp-for="UnitPrice" type="number" class="form-control glass-input" required>
+            </div>
+            <div class="col-md-4">
+                <label asp-for="TotalPrice" class="form-label fw-semibold">Toplam Tutar</label>
+                <input asp-for="TotalPrice" type="number" class="form-control glass-input" required>
+            </div>
+
+            <div class="col-md-4">
+                <label asp-for="InvoiceNo" class="form-label fw-semibold">Fatura No</label>
+                <input asp-for="InvoiceNo" type="number" class="form-control glass-input">
+            </div>
+            <div class="col-md-4">
+                <label asp-for="BranchId" class="form-label fw-semibold">Şube</label>
+                <select asp-for="BranchId" class="form-select glass-input" asp-items="@ViewBag.Branches" required>
+                    <option value="">Şube Seçiniz...</option>
+                </select>
+            </div>
+            <div class="col-md-4">
+                <label asp-for="TransactionDate" class="form-label fw-semibold">İşlem Tarihi</label>
+                <input asp-for="TransactionDate" type="date" class="form-control glass-input" required value="@Model.TransactionDate.ToString("yyyy-MM-dd")">
+            </div>
+
+            <div class="col-md-12">
+                <label asp-for="Description" class="form-label fw-semibold">Açıklama</label>
+                <textarea asp-for="Description" class="form-control glass-input" rows="3"></textarea>
+            </div>
+
+            <div class="col-12 mt-4">
+                <div class="d-flex gap-2 justify-content-end">
+                    <a asp-action="Index" class="btn btn-outline-secondary px-4">İptal</a>
+                    <button type="submit" class="btn btn-warning px-4 text-white font-weight-bold">Güncelle</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

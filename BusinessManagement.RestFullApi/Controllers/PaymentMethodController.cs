@@ -15,14 +15,14 @@ namespace BusinessManagement.RestFullApi.Controllers
             _paymentMethodServices = paymentMethodServices;
         }
 
-        [HttpGet]
+        [HttpGet("GetAll")]
         public async Task<IActionResult> GetAll()
         {
             var entities = await _paymentMethodServices.GetAllAsync();
             return Ok(entities);
         }
 
-        [HttpPost]
+        [HttpPost("AddPaymentMethod")]
         public async Task<IActionResult> Add(AddPaymentMethodDto dto)
         {
             var addedEntity = await _paymentMethodServices.AddPaymentMethodAsync(dto);
