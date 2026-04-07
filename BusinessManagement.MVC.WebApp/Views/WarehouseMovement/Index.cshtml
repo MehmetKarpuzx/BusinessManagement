@@ -35,7 +35,7 @@
                         <td>@item.ProcessTypeId</td>
                         <td>@item.MaterialId</td>
                         <td>@item.Amount</td>
-                        <td class="fw-bold">@(item.TotalPrice.ToString("C2"))</td>
+                        <td class="fw-bold">@item.TotalPrice.ToString("C2", new System.Globalization.CultureInfo("tr-TR"))</td>
                         <td>@item.BranchId</td>
                         <td class="text-end pe-4">
                             <div class="d-flex justify-content-end gap-2">

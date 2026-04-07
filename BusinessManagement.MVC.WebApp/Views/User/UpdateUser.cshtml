@@ -1,0 +1,56 @@
+@model BusinessManagement.MVC.DTO.UserDTOs.UpdateUserDto
+@{
+    ViewData["Title"] = "Kullanıcı Düzenle";
+}
+
+<div class="glass-card p-4">
+    <div class="mb-4">
+        <h2 class="fw-bold mb-0">
+            <i class="fa-solid fa-pen-to-square text-warning me-2"></i>Kullanıcı Düzenle
+        </h2>
+        <p class="text-muted">Lütfen kullanıcının güncel bilgilerini giriniz.</p>
+    </div>
+
+    <form asp-action="UpdateUser" method="post">
+        <input type="hidden" asp-for="Id" />
+        <div class="row g-3">
+            <div class="col-md-6">
+                <label asp-for="Name" class="form-label fw-semibold">Adı</label>
+                <input asp-for="Name" class="form-control glass-input" required>
+            </div>
+            <div class="col-md-6">
+                <label asp-for="Surname" class="form-label fw-semibold">Soyadı</label>
+                <input asp-for="Surname" class="form-control glass-input" required>
+            </div>
+            
+            <div class="col-md-4">
+                <label asp-for="Username" class="form-label fw-semibold">Sisteme Giriş Adı</label>
+                <input asp-for="Username" class="form-control glass-input" required>
+            </div>
+            <div class="col-md-4">
+                <label asp-for="Password" class="form-label fw-semibold">Şifre (Değiştirmek için doldurun)</label>
+                <input asp-for="Password" type="password" class="form-control glass-input" placeholder="Yeni şifre belirleyiniz">
+            </div>
+            <div class="col-md-4">
+                <label asp-for="RolId" class="form-label fw-semibold">Rol</label>
+                <select asp-for="RolId" class="form-select glass-input" asp-items="@ViewBag.Roles" required>
+                    <option value="">Seçiniz...</option>
+                </select>
+            </div>
+
+            <div class="col-md-12 mt-3">
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" asp-for="IsActive" id="isActiveSwitch">
+                    <label class="form-check-label fw-semibold" for="isActiveSwitch">Aktif Kullanıcı</label>
+                </div>
+            </div>
+
+            <div class="col-12 mt-4">
+                <div class="d-flex gap-2 justify-content-end">
+                    <a asp-action="Index" class="btn btn-outline-secondary px-4">İptal</a>
+                    <button type="submit" class="btn btn-primary px-4">Güncelle</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

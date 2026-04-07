@@ -9,10 +9,12 @@ namespace BusinessManagement.MVC.WebApp.Controllers
     public class MaterialController : Controller
     {
         private readonly IMaterialServices _materialServices;
+        private readonly ILoadDropdownServices _loadDropdownServices;
 
-        public MaterialController(IMaterialServices materialServices)
+        public MaterialController(IMaterialServices materialServices, ILoadDropdownServices loadDropdownServices)
         {
             _materialServices = materialServices;
+            _loadDropdownServices = loadDropdownServices;
         }
 
         public async Task<IActionResult> Index()
@@ -22,8 +24,9 @@ namespace BusinessManagement.MVC.WebApp.Controllers
         }
 
         [HttpGet]
-        public IActionResult AddMaterial()
+        public async Task<IActionResult> AddMaterial()
         {
+            ViewBag.Units = await _loadDropdownServices.GetUnitsSelectListAsync();
             return View();
         }
 
@@ -51,9 +54,12 @@ namespace BusinessManagement.MVC.WebApp.Controllers
             {
                 Id = value.Id,
                 Name = value.Name,
+                UnitTypeId = value.UnitTypeId,
+                MinStock = value.MinStock,
                 Description = value.Description
             };
 
+            ViewBag.Units = await _loadDropdownServices.GetUnitsSelectListAsync();
             return View(updateDto);
         }
 

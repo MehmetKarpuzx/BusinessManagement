@@ -9,10 +9,12 @@ namespace BusinessManagement.MVC.WebApp.Controllers
     public class WarehouseMovementController : Controller
     {
         private readonly IWarehouseMovementServices _warehouseMovementServices;
+        private readonly ILoadDropdownServices _loadDropdownServices;
 
-        public WarehouseMovementController(IWarehouseMovementServices warehouseMovementServices)
+        public WarehouseMovementController(IWarehouseMovementServices warehouseMovementServices, ILoadDropdownServices loadDropdownServices)
         {
             _warehouseMovementServices = warehouseMovementServices;
+            _loadDropdownServices = loadDropdownServices;
         }
 
         public async Task<IActionResult> Index()
@@ -22,8 +24,12 @@ namespace BusinessManagement.MVC.WebApp.Controllers
         }
 
         [HttpGet]
-        public IActionResult AddWarehouseMovement()
+        public async Task<IActionResult> AddWarehouseMovement()
         {
+            ViewBag.ProcessTypes = await _loadDropdownServices.GetProcessTypesSelectListAsync();
+            ViewBag.Suppliers = await _loadDropdownServices.GetSuppliersSelectListAsync();
+            ViewBag.Materials = await _loadDropdownServices.GetMaterialsSelectListAsync();
+            ViewBag.Branches = await _loadDropdownServices.GetBranchesSelectListAsync();
             return View();
         }
 
@@ -62,6 +68,10 @@ namespace BusinessManagement.MVC.WebApp.Controllers
                 Description = value.Description
             };
 
+            ViewBag.ProcessTypes = await _loadDropdownServices.GetProcessTypesSelectListAsync();
+            ViewBag.Suppliers = await _loadDropdownServices.GetSuppliersSelectListAsync();
+            ViewBag.Materials = await _loadDropdownServices.GetMaterialsSelectListAsync();
+            ViewBag.Branches = await _loadDropdownServices.GetBranchesSelectListAsync();
             return View(updateDto);
         }
 

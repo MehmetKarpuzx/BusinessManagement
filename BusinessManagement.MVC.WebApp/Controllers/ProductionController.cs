@@ -9,10 +9,12 @@ namespace BusinessManagement.MVC.WebApp.Controllers
     public class ProductionController : Controller
     {
         private readonly IProductionServices _productionServices;
+        private readonly ILoadDropdownServices _loadDropdownServices;
 
-        public ProductionController(IProductionServices productionServices)
+        public ProductionController(IProductionServices productionServices, ILoadDropdownServices loadDropdownServices)
         {
             _productionServices = productionServices;
+            _loadDropdownServices = loadDropdownServices;
         }
 
         public async Task<IActionResult> Index()
@@ -22,8 +24,11 @@ namespace BusinessManagement.MVC.WebApp.Controllers
         }
 
         [HttpGet]
-        public IActionResult AddProduction()
+        public async Task<IActionResult> AddProduction()
         {
+            ViewBag.Products = await _loadDropdownServices.GetProductsSelectListAsync();
+            ViewBag.Units = await _loadDropdownServices.GetUnitsSelectListAsync();
+            ViewBag.Branches = await _loadDropdownServices.GetBranchesSelectListAsync();
             return View();
         }
 
@@ -60,6 +65,9 @@ namespace BusinessManagement.MVC.WebApp.Controllers
                 Description = value.Description
             };
 
+            ViewBag.Products = await _loadDropdownServices.GetProductsSelectListAsync();
+            ViewBag.Units = await _loadDropdownServices.GetUnitsSelectListAsync();
+            ViewBag.Branches = await _loadDropdownServices.GetBranchesSelectListAsync();
             return View(updateDto);
         }
 

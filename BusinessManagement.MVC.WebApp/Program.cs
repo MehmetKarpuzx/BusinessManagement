@@ -1,91 +1,24 @@
 using BusinessManagement.MVC.Application.Interfaces;
 using BusinessManagement.MVC.Application.Services;
+using BusinessManagement.MVC.Application.DependencyInjection;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
+builder.Services.AddHttpContextAccessor();
 
-builder.Services.AddHttpClient<IBranchServices, BranchServices>(client =>
-{
-    client.BaseAddress = new Uri(builder.Configuration["ApiSettings:BaseUrl"]);
-});
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie(options =>
+    {
+        options.LoginPath = "/Login/Index";
+        options.AccessDeniedPath = "/Login/AccessDenied";
+    });
 
-builder.Services.AddHttpClient<ICargoCompanyServices, CargoCompanyServices>(client =>
-{
-    client.BaseAddress = new Uri(builder.Configuration["ApiSettings:BaseUrl"]);
-});
-
-builder.Services.AddHttpClient<ICustomerServices, CustomerServices>(client =>
-{
-    client.BaseAddress = new Uri(builder.Configuration["ApiSettings:BaseUrl"]);
-});
-
-builder.Services.AddHttpClient<ICustomerTypeServices, CustomerTypeServices>(client =>
-{
-    client.BaseAddress = new Uri(builder.Configuration["ApiSettings:BaseUrl"]);
-});
-
-builder.Services.AddHttpClient<IMaterialServices, MaterialServices>(client =>
-{
-    client.BaseAddress = new Uri(builder.Configuration["ApiSettings:BaseUrl"]);
-});
-
-builder.Services.AddHttpClient<IMaterialProcurementServices, MaterialProcurementServices>(client =>
-{
-    client.BaseAddress = new Uri(builder.Configuration["ApiSettings:BaseUrl"]);
-});
-
-builder.Services.AddHttpClient<IOrderServices, OrderServices>(client =>
-{
-    client.BaseAddress = new Uri(builder.Configuration["ApiSettings:BaseUrl"]);
-});
-
-builder.Services.AddHttpClient<IPaymentServices, PaymentServices>(client =>
-{
-    client.BaseAddress = new Uri(builder.Configuration["ApiSettings:BaseUrl"]);
-});
-
-builder.Services.AddHttpClient<IPaymentMethodServices, PaymentMethodServices>(client =>
-{
-    client.BaseAddress = new Uri(builder.Configuration["ApiSettings:BaseUrl"]);
-});
-
-builder.Services.AddHttpClient<IProcessTypeServices, ProcessTypeServices>(client =>
-{
-    client.BaseAddress = new Uri(builder.Configuration["ApiSettings:BaseUrl"]);
-});
-
-builder.Services.AddHttpClient<IProductServices, ProductServices>(client =>
-{
-    client.BaseAddress = new Uri(builder.Configuration["ApiSettings:BaseUrl"]);
-});
-
-builder.Services.AddHttpClient<IProductionServices, ProductionServices>(client =>
-{
-    client.BaseAddress = new Uri(builder.Configuration["ApiSettings:BaseUrl"]);
-});
-
-builder.Services.AddHttpClient<ISupplierServices, SupplierServices>(client =>
-{
-    client.BaseAddress = new Uri(builder.Configuration["ApiSettings:BaseUrl"]);
-});
-
-builder.Services.AddHttpClient<ITransferServices, TransferServices>(client =>
-{
-    client.BaseAddress = new Uri(builder.Configuration["ApiSettings:BaseUrl"]);
-});
-
-builder.Services.AddHttpClient<IUnitServices, UnitServices>(client =>
-{
-    client.BaseAddress = new Uri(builder.Configuration["ApiSettings:BaseUrl"]);
-});
-
-builder.Services.AddHttpClient<IWarehouseMovementServices, WarehouseMovementServices>(client =>
-{
-    client.BaseAddress = new Uri(builder.Configuration["ApiSettings:BaseUrl"]);
-});
+// Tüm servislerin Injection işlemleri kendi katmanında yapılıyor 
+builder.Services.AddMvcApplicationServices(builder.Configuration);
 
 var app = builder.Build();
 
@@ -102,7 +35,16 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
+
+var supportedCultures = new[] { "tr-TR" };
+var localizationOptions = new RequestLocalizationOptions()
+    .SetDefaultCulture(supportedCultures[0])
+    .AddSupportedCultures(supportedCultures)
+    .AddSupportedUICultures(supportedCultures);
+
+app.UseRequestLocalization(localizationOptions);
 
 app.MapControllerRoute(
     name: "default",

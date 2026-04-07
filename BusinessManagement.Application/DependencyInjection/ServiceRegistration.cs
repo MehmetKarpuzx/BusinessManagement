@@ -1,4 +1,4 @@
-﻿using BusinessManagement.Application.Interfaces;
+using BusinessManagement.Application.Interfaces;
 using BusinessManagement.Application.Services;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -19,6 +19,7 @@ namespace BusinessManagement.Application.DependencyInjection
             services.AddScoped<IMaterialServices, MaterialServices>(); 
             services.AddScoped<IOrderServices, OrderServices>(); 
             services.AddScoped<IPaymentMethodServices, PaymentMethodServices>(); 
+            services.AddScoped<IPaymentServices, PaymentServices>(); 
             services.AddScoped<IProcessTypeServices, ProcessTypeServices>(); 
             services.AddScoped<IProductionServices, ProductionServices>(); 
             services.AddScoped<IProductServices, ProductServices>(); 
@@ -26,6 +27,8 @@ namespace BusinessManagement.Application.DependencyInjection
             services.AddScoped<ITransferServices, TransferServices>(); 
             services.AddScoped<IUnitServices, UnitServices>(); 
             services.AddScoped<IWarehouseMovementServices, WarehouseMovementServices>(); 
+            services.AddScoped<IUserServices, UserServices>(); 
+            services.AddScoped<IRolServices, RolServices>(); 
             return services;
         }
     }

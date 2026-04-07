@@ -9,10 +9,12 @@ namespace BusinessManagement.MVC.WebApp.Controllers
     public class TransferController : Controller
     {
         private readonly ITransferServices _transferServices;
+        private readonly ILoadDropdownServices _loadDropdownServices;
 
-        public TransferController(ITransferServices transferServices)
+        public TransferController(ITransferServices transferServices, ILoadDropdownServices loadDropdownServices)
         {
             _transferServices = transferServices;
+            _loadDropdownServices = loadDropdownServices;
         }
 
         public async Task<IActionResult> Index()
@@ -22,8 +24,10 @@ namespace BusinessManagement.MVC.WebApp.Controllers
         }
 
         [HttpGet]
-        public IActionResult AddTransfer()
+        public async Task<IActionResult> AddTransfer()
         {
+            ViewBag.Productions = await _loadDropdownServices.GetProductionsSelectListAsync();
+            ViewBag.Branches = await _loadDropdownServices.GetBranchesSelectListAsync();
             return View();
         }
 
@@ -57,6 +61,8 @@ namespace BusinessManagement.MVC.WebApp.Controllers
                 Description = value.Description
             };
 
+            ViewBag.Productions = await _loadDropdownServices.GetProductionsSelectListAsync();
+            ViewBag.Branches = await _loadDropdownServices.GetBranchesSelectListAsync();
             return View(updateDto);
         }
 

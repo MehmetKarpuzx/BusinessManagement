@@ -11,6 +11,6 @@ namespace BusinessManagement.MVC.DTO.ProductionDTOs
         public DateTime CreateDate { get; set; }
         public int BranchId { get; set; }
         public int TotalPrice { get; set; }
-        public string Description { get; set; }
+        public string? Description { get; set; }
     }
 }

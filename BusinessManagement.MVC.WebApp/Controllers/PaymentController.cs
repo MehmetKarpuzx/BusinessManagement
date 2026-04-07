@@ -9,10 +9,12 @@ namespace BusinessManagement.MVC.WebApp.Controllers
     public class PaymentController : Controller
     {
         private readonly IPaymentServices _paymentServices;
+        private readonly ILoadDropdownServices _loadDropdownServices;
 
-        public PaymentController(IPaymentServices paymentServices)
+        public PaymentController(IPaymentServices paymentServices, ILoadDropdownServices loadDropdownServices)
         {
             _paymentServices = paymentServices;
+            _loadDropdownServices = loadDropdownServices;
         }
 
         public async Task<IActionResult> Index()
@@ -22,8 +24,10 @@ namespace BusinessManagement.MVC.WebApp.Controllers
         }
 
         [HttpGet]
-        public IActionResult AddPayment()
+        public async Task<IActionResult> AddPayment()
         {
+            ViewBag.Orders = await _loadDropdownServices.GetOrdersSelectListAsync();
+            ViewBag.PaymentMethods = await _loadDropdownServices.GetPaymentMethodsSelectListAsync();
             return View();
         }
 
@@ -57,6 +61,8 @@ namespace BusinessManagement.MVC.WebApp.Controllers
                 Description = value.Description
             };
 
+            ViewBag.Orders = await _loadDropdownServices.GetOrdersSelectListAsync();
+            ViewBag.PaymentMethods = await _loadDropdownServices.GetPaymentMethodsSelectListAsync();
             return View(updateDto);
         }
 

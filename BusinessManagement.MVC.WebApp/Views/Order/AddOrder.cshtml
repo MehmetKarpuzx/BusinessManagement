@@ -13,47 +13,79 @@
 
     <form asp-action="AddOrder" method="post">
         <div class="row g-3">
-            <div class="col-md-6">
-                <label asp-for="CustomerId" class="form-label fw-semibold">Müşteri ID</label>
-                <input asp-for="CustomerId" type="number" class="form-control glass-input" required>
-            </div>
-            <div class="col-md-6">
-                <label asp-for="CargoCompanyId" class="form-label fw-semibold">Kargo Firması ID</label>
-                <input asp-for="CargoCompanyId" type="number" class="form-control glass-input" required>
-            </div>
-            
             <div class="col-md-4">
-                <label asp-for="EmployeeId" class="form-label fw-semibold">Personel ID</label>
-                <input asp-for="EmployeeId" type="number" class="form-control glass-input" required>
+                <label asp-for="CustomerId" class="form-label fw-semibold">Müşteri <span class="text-danger">*</span></label>
+                <select asp-for="CustomerId" class="form-select glass-input" asp-items="@ViewBag.Customers" required>
+                    <option value="">Müşteri Seçiniz...</option>
+                </select>
             </div>
             <div class="col-md-4">
-                <label asp-for="BranchId" class="form-label fw-semibold">Şube ID</label>
-                <input asp-for="BranchId" type="number" class="form-control glass-input" required>
+                <label asp-for="BranchId" class="form-label fw-semibold">Şube <span class="text-danger">*</span></label>
+                <select asp-for="BranchId" class="form-select glass-input" asp-items="@ViewBag.Branches" required>
+                    <option value="">Şube Seçiniz...</option>
+                </select>
             </div>
             <div class="col-md-4">
-                <label asp-for="TotalAmount" class="form-label fw-semibold">Toplam Tutar</label>
-                <input asp-for="TotalAmount" type="number" class="form-control glass-input" required>
+                <label asp-for="ProductId" class="form-label fw-semibold">Ürün <span class="text-danger">*</span></label>
+                <select asp-for="ProductId" class="form-select glass-input" asp-items="@ViewBag.Products" required>
+                    <option value="">Ürün Seçiniz...</option>
+                </select>
             </div>
 
-            <div class="col-md-4">
-                <label asp-for="OrderDate" class="form-label fw-semibold">Sipariş Tarihi</label>
+            <div class="col-md-6">
+                <label asp-for="Amount" class="form-label fw-semibold">Miktar <span class="text-danger">*</span></label>
+                <input asp-for="Amount" type="number" class="form-control glass-input" required>
+            </div>
+            <div class="col-md-6">
+                <label asp-for="TotalPrice" class="form-label fw-semibold">Toplam Fiyat <span class="text-danger">*</span></label>
+                <input asp-for="TotalPrice" type="number" class="form-control glass-input" required>
+            </div>
+
+            <div class="col-md-12">
+                <label asp-for="OrderDate" class="form-label fw-semibold">Sipariş Tarihi <span class="text-danger">*</span></label>
                 <input asp-for="OrderDate" type="date" class="form-control glass-input" required value="@DateTime.Now.ToString("yyyy-MM-dd")">
             </div>
-            <div class="col-md-4">
-                <label asp-for="EstimatedDeliveryDate" class="form-label fw-semibold">Tahmini Teslim</label>
-                <input asp-for="EstimatedDeliveryDate" type="date" class="form-control glass-input">
+
+            <div class="col-md-6">
+                <label asp-for="CargoCompanyId" class="form-label fw-semibold">Kargo Firması</label>
+                <select asp-for="CargoCompanyId" class="form-select glass-input" asp-items="@ViewBag.CargoCompanies">
+                    <option value="">Kargo Firması Seçiniz...</option>
+                </select>
             </div>
-            <div class="col-md-4">
-                <label asp-for="DeliveryDate" class="form-label fw-semibold">Teslim Tarihi</label>
-                <input asp-for="DeliveryDate" type="date" class="form-control glass-input">
+            <div class="col-md-6">
+                <label asp-for="OrderStatus" class="form-label fw-semibold">Sipariş Durumu <span class="text-danger">*</span></label>
+                <select asp-for="OrderStatus" class="form-select glass-input" asp-items="Html.GetEnumSelectList<BusinessManagement.MVC.Domain.Enums.OrderStatus>()"></select>
             </div>
 
             <div class="col-md-6">
-                <label asp-for="OrderStatus" class="form-label fw-semibold">Sipariş Durumu</label>
-                <select asp-for="OrderStatus" class="form-select glass-input" asp-items="Html.GetEnumSelectList<BusinessManagement.MVC.Domain.Enums.OrderStatus>()"></select>
+                <label asp-for="CargoPrice" class="form-label fw-semibold">Kargo Ücreti</label>
+                <input asp-for="CargoPrice" type="number" class="form-control glass-input">
             </div>
             <div class="col-md-6">
-                <label asp-for="Description" class="form-label fw-semibold">Açıklama</label>
+                <label asp-for="CargoDescription" class="form-label fw-semibold">Kargo Açıklaması</label>
+                <input asp-for="CargoDescription" type="text" class="form-control glass-input">
+            </div>
+
+            <div class="col-md-6">
+                <label asp-for="DiscountPrice" class="form-label fw-semibold">İndirim Tutarı</label>
+                <input asp-for="DiscountPrice" type="number" class="form-control glass-input">
+            </div>
+            <div class="col-md-6">
+                <label asp-for="DiscountDescription" class="form-label fw-semibold">İndirim Açıklaması</label>
+                <input asp-for="DiscountDescription" type="text" class="form-control glass-input">
+            </div>
+
+            <div class="col-md-6">
+                <label asp-for="PaymentReceived" class="form-label fw-semibold">Alınan Ödeme <span class="text-danger">*</span></label>
+                <input asp-for="PaymentReceived" type="number" class="form-control glass-input" required>
+            </div>
+            <div class="col-md-6">
+                <label asp-for="RemainderPrice" class="form-label fw-semibold">Kalan Tutar</label>
+                <input asp-for="RemainderPrice" type="number" class="form-control glass-input">
+            </div>
+
+            <div class="col-md-12">
+                <label asp-for="Description" class="form-label fw-semibold">Genel Açıklama</label>
                 <input asp-for="Description" class="form-control glass-input">
             </div>
 

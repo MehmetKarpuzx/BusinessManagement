@@ -31,9 +31,10 @@
                 <input asp-for="Email" type="email" class="form-control glass-input" placeholder="example@mail.com">
             </div>
             <div class="col-md-4">
-                <label asp-for="CustomerTypeId" class="form-label fw-semibold">Müşteri Tipi ID</label>
-                <input asp-for="CustomerTypeId" type="number" class="form-control glass-input" required>
-                <small class="text-muted">Müşteri tipi listesinden uygun ID'yi giriniz.</small>
+                <label asp-for="CustomerTypeId" class="form-label fw-semibold">Müşteri Tipi</label>
+                <select asp-for="CustomerTypeId" class="form-select glass-input" asp-items="@ViewBag.CustomerTypes" required>
+                    <option value="">Seçiniz...</option>
+                </select>
             </div>
 
             <div class="col-md-4">

@@ -14,12 +14,16 @@
     <form asp-action="AddMaterialProcurement" method="post">
         <div class="row g-3">
             <div class="col-md-6">
-                <label asp-for="MaterialId" class="form-label fw-semibold">Hammadde ID</label>
-                <input asp-for="MaterialId" type="number" class="form-control glass-input" required>
+                <label asp-for="MaterialId" class="form-label fw-semibold">Hammadde</label>
+                <select asp-for="MaterialId" class="form-select glass-input" asp-items="@ViewBag.Materials" required>
+                    <option value="">Seçiniz...</option>
+                </select>
             </div>
             <div class="col-md-6">
-                <label asp-for="SupplierId" class="form-label fw-semibold">Tedarikçi ID</label>
-                <input asp-for="SupplierId" type="number" class="form-control glass-input" required>
+                <label asp-for="SupplierId" class="form-label fw-semibold">Tedarikçi</label>
+                <select asp-for="SupplierId" class="form-select glass-input" asp-items="@ViewBag.Suppliers" required>
+                    <option value="">Seçiniz...</option>
+                </select>
             </div>
             
             <div class="col-md-4">
@@ -27,8 +31,10 @@
                 <input asp-for="Amount" type="number" class="form-control glass-input" required>
             </div>
             <div class="col-md-4">
-                <label asp-for="UnitTypeId" class="form-label fw-semibold">Birim Tipi ID</label>
-                <input asp-for="UnitTypeId" type="number" class="form-control glass-input" required>
+                <label asp-for="UnitTypeId" class="form-label fw-semibold">Birim</label>
+                <select asp-for="UnitTypeId" class="form-select glass-input" asp-items="@ViewBag.Units" required>
+                    <option value="">Seçiniz...</option>
+                </select>
             </div>
             <div class="col-md-4">
                 <label asp-for="UnitPrice" class="form-label fw-semibold">Birim Fiyat</label>
@@ -44,8 +50,10 @@
                 <input asp-for="InvoiceNo" type="number" class="form-control glass-input">
             </div>
             <div class="col-md-4">
-                <label asp-for="BranchId" class="form-label fw-semibold">Şube ID</label>
-                <input asp-for="BranchId" type="number" class="form-control glass-input" required>
+                <label asp-for="BranchId" class="form-label fw-semibold">Şube</label>
+                <select asp-for="BranchId" class="form-select glass-input" asp-items="@ViewBag.Branches" required>
+                    <option value="">Seçiniz...</option>
+                </select>
             </div>
 
             <div class="col-md-6">
@@ -66,3 +74,22 @@
         </div>
     </form>
 </div>
+
+@section Scripts {
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const amountInput = document.getElementById('Amount');
+            const unitPriceInput = document.getElementById('UnitPrice');
+            const totalPriceInput = document.getElementById('TotalPrice');
+
+            function calculateTotal() {
+                const amount = parseFloat(amountInput.value) || 0;
+                const unitPrice = parseFloat(unitPriceInput.value) || 0;
+                totalPriceInput.value = (amount * unitPrice).toFixed(2);
+            }
+
+            amountInput.addEventListener('input', calculateTotal);
+            unitPriceInput.addEventListener('input', calculateTotal);
+        });
+    </script>
+}

@@ -1,4 +1,4 @@
-﻿using BusinessManagement.Domain.Entities;
+using BusinessManagement.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Internal;
 using System;
@@ -28,6 +28,8 @@ namespace BusinessManagement.Persistence.Contexts
         public DbSet<Transfer> Transfers { get; set; }
         public DbSet<CargoCompany> CargoCompanies { get; set; }
         public DbSet<Order> Orders { get; set; }
+        public DbSet<User> Users { get; set; }
+        public DbSet<Rol> Rols { get; set; }
 
 
     }

@@ -14,12 +14,16 @@
     <form asp-action="AddTransfer" method="post">
         <div class="row g-3">
             <div class="col-md-6">
-                <label asp-for="ProductionId" class="form-label fw-semibold">Üretim ID</label>
-                <input asp-for="ProductionId" type="number" class="form-control glass-input" required>
+                <label asp-for="ProductionId" class="form-label fw-semibold">Üretim</label>
+                <select asp-for="ProductionId" class="form-select glass-input" asp-items="@ViewBag.Productions" required>
+                    <option value="">Üretim Seçiniz...</option>
+                </select>
             </div>
             <div class="col-md-6">
-                <label asp-for="BranchId" class="form-label fw-semibold">Hedef Şube ID</label>
-                <input asp-for="BranchId" type="number" class="form-control glass-input" required>
+                <label asp-for="BranchId" class="form-label fw-semibold">Hedef Şube</label>
+                <select asp-for="BranchId" class="form-select glass-input" asp-items="@ViewBag.Branches" required>
+                    <option value="">Şube Seçiniz...</option>
+                </select>
             </div>
             
             <div class="col-md-6">

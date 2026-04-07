@@ -31,7 +31,7 @@
                     <tr>
                         <td class="ps-4">@item.PaymentDate.ToString("dd.MM.yyyy")</td>
                         <td>@item.OrderId</td>
-                        <td class="fw-bold text-success">@item.Amount.ToString("C2")</td>
+                        <td class="fw-bold text-success">@item.Amount.ToString("C2", new System.Globalization.CultureInfo("tr-TR"))</td>
                         <td>@item.Description</td>
                         <td class="text-end pe-4">
                             <div class="d-flex justify-content-end gap-2">

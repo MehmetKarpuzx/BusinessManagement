@@ -27,6 +27,8 @@ namespace BusinessManagement.Persistence.DependencyInjection
             services.AddScoped<ITransferRepository,TransferRepository >();
             services.AddScoped<IUnitRepository,UnitRepository >();
             services.AddScoped<IWarehouseMovementRepository,WarehouseMovementRepository >();
+            services.AddScoped<IUserRepository,UserRepository >();
+            services.AddScoped<IRolRepository,RolRepository >();
 
             
 

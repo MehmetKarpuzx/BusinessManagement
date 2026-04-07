@@ -9,10 +9,12 @@ namespace BusinessManagement.MVC.WebApp.Controllers
     public class CustomerController : Controller
     {
         private readonly ICustomerServices _customerServices;
+        private readonly ILoadDropdownServices _loadDropdownServices;
 
-        public CustomerController(ICustomerServices customerServices)
+        public CustomerController(ICustomerServices customerServices, ILoadDropdownServices loadDropdownServices)
         {
             _customerServices = customerServices;
+            _loadDropdownServices = loadDropdownServices;
         }
 
         public async Task<IActionResult> Index()
@@ -22,8 +24,9 @@ namespace BusinessManagement.MVC.WebApp.Controllers
         }
 
         [HttpGet]
-        public IActionResult AddCustomer()
+        public async Task<IActionResult> AddCustomer()
         {
+            ViewBag.CustomerTypes = await _loadDropdownServices.GetCustomerTypesSelectListAsync();
             return View();
         }
 
@@ -65,6 +68,7 @@ namespace BusinessManagement.MVC.WebApp.Controllers
                 IsDeleted = value.IsDeleted
             };
 
+            ViewBag.CustomerTypes = await _loadDropdownServices.GetCustomerTypesSelectListAsync();
             return View(updateDto);
         }
 

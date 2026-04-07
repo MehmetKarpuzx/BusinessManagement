@@ -24,5 +24,6 @@ namespace BusinessManagement.MVC.Application.Interfaces
         Task<List<SelectListItem>> GetUnitsSelectListAsync();
         Task<List<SelectListItem>> GetWarehouseMovementsSelectListAsync();
         Task<List<SelectListItem>> GetMaterialProcurementsSelectListAsync();
+        Task<List<SelectListItem>> GetRolesSelectListAsync();
     }
 }

@@ -9,10 +9,12 @@ namespace BusinessManagement.MVC.WebApp.Controllers
     public class MaterialProcurementController : Controller
     {
         private readonly IMaterialProcurementServices _materialProcurementServices;
+        private readonly ILoadDropdownServices _loadDropdownServices;
 
-        public MaterialProcurementController(IMaterialProcurementServices materialProcurementServices)
+        public MaterialProcurementController(IMaterialProcurementServices materialProcurementServices, ILoadDropdownServices loadDropdownServices)
         {
             _materialProcurementServices = materialProcurementServices;
+            _loadDropdownServices = loadDropdownServices;
         }
 
         public async Task<IActionResult> Index()
@@ -22,8 +24,12 @@ namespace BusinessManagement.MVC.WebApp.Controllers
         }
 
         [HttpGet]
-        public IActionResult AddMaterialProcurement()
+        public async Task<IActionResult> AddMaterialProcurement()
         {
+            ViewBag.Materials = await _loadDropdownServices.GetMaterialsSelectListAsync();
+            ViewBag.Suppliers = await _loadDropdownServices.GetSuppliersSelectListAsync();
+            ViewBag.Units = await _loadDropdownServices.GetUnitsSelectListAsync();
+            ViewBag.Branches = await _loadDropdownServices.GetBranchesSelectListAsync();
             return View();
         }
 
@@ -62,6 +68,10 @@ namespace BusinessManagement.MVC.WebApp.Controllers
                 Description = value.Description
             };
 
+            ViewBag.Materials = await _loadDropdownServices.GetMaterialsSelectListAsync();
+            ViewBag.Suppliers = await _loadDropdownServices.GetSuppliersSelectListAsync();
+            ViewBag.Units = await _loadDropdownServices.GetUnitsSelectListAsync();
+            ViewBag.Branches = await _loadDropdownServices.GetBranchesSelectListAsync();
             return View(updateDto);
         }
 

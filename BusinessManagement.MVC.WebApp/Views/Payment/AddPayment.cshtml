@@ -14,12 +14,16 @@
     <form asp-action="AddPayment" method="post">
         <div class="row g-3">
             <div class="col-md-6">
-                <label asp-for="OrderId" class="form-label fw-semibold">Sipariş ID</label>
-                <input asp-for="OrderId" type="number" class="form-control glass-input" required>
+                <label asp-for="OrderId" class="form-label fw-semibold">Sipariş</label>
+                <select asp-for="OrderId" class="form-select glass-input" asp-items="@ViewBag.Orders" required>
+                    <option value="">Sipariş Seçiniz...</option>
+                </select>
             </div>
             <div class="col-md-6">
-                <label asp-for="PaymentMethodId" class="form-label fw-semibold">Ödeme Yöntemi ID</label>
-                <input asp-for="PaymentMethodId" type="number" class="form-control glass-input" required>
+                <label asp-for="PaymentMethodId" class="form-label fw-semibold">Ödeme Yöntemi</label>
+                <select asp-for="PaymentMethodId" class="form-select glass-input" asp-items="@ViewBag.PaymentMethods" required>
+                    <option value="">Ödeme Yöntemi Seçiniz...</option>
+                </select>
             </div>
             
             <div class="col-md-6">

@@ -9,10 +9,12 @@ namespace BusinessManagement.MVC.WebApp.Controllers
     public class OrderController : Controller
     {
         private readonly IOrderServices _orderServices;
+        private readonly ILoadDropdownServices _loadDropdownServices;
 
-        public OrderController(IOrderServices orderServices)
+        public OrderController(IOrderServices orderServices, ILoadDropdownServices loadDropdownServices)
         {
             _orderServices = orderServices;
+            _loadDropdownServices = loadDropdownServices;
         }
 
         public async Task<IActionResult> Index()
@@ -22,8 +24,12 @@ namespace BusinessManagement.MVC.WebApp.Controllers
         }
 
         [HttpGet]
-        public IActionResult AddOrder()
+        public async Task<IActionResult> AddOrder()
         {
+            ViewBag.Customers = await _loadDropdownServices.GetCustomersSelectListAsync();
+            ViewBag.Branches = await _loadDropdownServices.GetBranchesSelectListAsync();
+            ViewBag.Products = await _loadDropdownServices.GetProductsSelectListAsync();
+            ViewBag.CargoCompanies = await _loadDropdownServices.GetCargoCompaniesSelectListAsync();
             return View();
         }
 
@@ -51,17 +57,26 @@ namespace BusinessManagement.MVC.WebApp.Controllers
             {
                 Id = value.Id,
                 CustomerId = value.CustomerId,
-                CargoCompanyId = value.CargoCompanyId,
-                OrderDate = value.OrderDate,
-                EmployeeId = value.EmployeeId,
                 BranchId = value.BranchId,
-                EstimatedDeliveryDate = value.EstimatedDeliveryDate,
-                DeliveryDate = value.DeliveryDate,
-                TotalAmount = value.TotalAmount,
+                ProductId = value.ProductId,
+                Amount = value.Amount,
+                TotalPrice = value.TotalPrice,
+                OrderDate = value.OrderDate,
                 OrderStatus = value.OrderStatus,
+                CargoCompanyId = value.CargoCompanyId,
+                CargoPrice = value.CargoPrice,
+                CargoDescription = value.CargoDescription,
+                DiscountPrice = value.DiscountPrice,
+                DiscountDescription = value.DiscountDescription,
+                PaymentReceived = value.PaymentReceived,
+                RemainderPrice = value.RemainderPrice,
                 Description = value.Description
             };
 
+            ViewBag.Customers = await _loadDropdownServices.GetCustomersSelectListAsync();
+            ViewBag.Branches = await _loadDropdownServices.GetBranchesSelectListAsync();
+            ViewBag.Products = await _loadDropdownServices.GetProductsSelectListAsync();
+            ViewBag.CargoCompanies = await _loadDropdownServices.GetCargoCompaniesSelectListAsync();
             return View(updateDto);
         }
 

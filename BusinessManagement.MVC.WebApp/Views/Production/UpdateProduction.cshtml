@@ -15,12 +15,16 @@
         <input type="hidden" asp-for="Id" />
         <div class="row g-3">
             <div class="col-md-6">
-                <label asp-for="ProductId" class="form-label fw-semibold">Ürün ID</label>
-                <input asp-for="ProductId" type="number" class="form-control glass-input" required>
+                <label asp-for="ProductId" class="form-label fw-semibold">Ürün</label>
+                <select asp-for="ProductId" class="form-select glass-input" asp-items="@ViewBag.Products" required>
+                    <option value="">Ürün Seçiniz...</option>
+                </select>
             </div>
             <div class="col-md-6">
-                <label asp-for="BranchId" class="form-label fw-semibold">Şube ID</label>
-                <input asp-for="BranchId" type="number" class="form-control glass-input" required>
+                <label asp-for="BranchId" class="form-label fw-semibold">Şube</label>
+                <select asp-for="BranchId" class="form-select glass-input" asp-items="@ViewBag.Branches" required>
+                    <option value="">Şube Seçiniz...</option>
+                </select>
             </div>
             
             <div class="col-md-4">
@@ -28,8 +32,10 @@
                 <input asp-for="Amount" type="number" class="form-control glass-input" required>
             </div>
             <div class="col-md-4">
-                <label asp-for="UnitTypeId" class="form-label fw-semibold">Birim Tipi ID</label>
-                <input asp-for="UnitTypeId" type="number" class="form-control glass-input" required>
+                <label asp-for="UnitTypeId" class="form-label fw-semibold">Birim</label>
+                <select asp-for="UnitTypeId" class="form-select glass-input" asp-items="@ViewBag.Units" required>
+                    <option value="">Birim Seçiniz...</option>
+                </select>
             </div>
             <div class="col-md-4">
                 <label asp-for="CostPrice" class="form-label fw-semibold">Birim Maliyet</label>

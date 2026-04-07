@@ -32,8 +32,8 @@
                     <tr>
                         <td class="ps-4">@item.ProcurementDate.ToString("dd.MM.yyyy")</td>
                         <td>@item.Amount</td>
-                        <td>@((item.UnitPrice ?? 0).ToString("C2"))</td>
-                        <td class="fw-bold text-primary">@((item.TotalPrice ?? 0).ToString("C2"))</td>
+                        <td>@((item.UnitPrice ?? 0).ToString("C2", new System.Globalization.CultureInfo("tr-TR")))</td>
+                        <td class="fw-bold text-primary">@((item.TotalPrice ?? 0).ToString("C2", new System.Globalization.CultureInfo("tr-TR")))</td>
                         <td>@(item.InvoiceNo?.ToString() ?? "-")</td>
                         <td class="text-end pe-4">
                             <div class="d-flex justify-content-end gap-2">

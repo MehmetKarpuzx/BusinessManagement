@@ -15,16 +15,22 @@
         <input type="hidden" asp-for="Id" />
         <div class="row g-3">
             <div class="col-md-4">
-                <label asp-for="ProcessTypeId" class="form-label fw-semibold">İşlem Tipi ID</label>
-                <input asp-for="ProcessTypeId" type="number" class="form-control glass-input" required>
+                <label asp-for="ProcessTypeId" class="form-label fw-semibold">İşlem Tipi</label>
+                <select asp-for="ProcessTypeId" class="form-select glass-input" asp-items="@ViewBag.ProcessTypes" required>
+                    <option value="">İşlem Seçiniz...</option>
+                </select>
             </div>
             <div class="col-md-4">
-                <label asp-for="SupplierId" class="form-label fw-semibold">Tedarikçi ID</label>
-                <input asp-for="SupplierId" type="number" class="form-control glass-input">
+                <label asp-for="SupplierId" class="form-label fw-semibold">Tedarikçi</label>
+                <select asp-for="SupplierId" class="form-select glass-input" asp-items="@ViewBag.Suppliers">
+                    <option value="">Tedarikçi Seçiniz...</option>
+                </select>
             </div>
             <div class="col-md-4">
-                <label asp-for="MaterialId" class="form-label fw-semibold">Hammadde ID</label>
-                <input asp-for="MaterialId" type="number" class="form-control glass-input" required>
+                <label asp-for="MaterialId" class="form-label fw-semibold">Hammadde</label>
+                <select asp-for="MaterialId" class="form-select glass-input" asp-items="@ViewBag.Materials" required>
+                    <option value="">Seçiniz...</option>
+                </select>
             </div>
             
             <div class="col-md-4">
@@ -45,8 +51,10 @@
                 <input asp-for="InvoiceNo" type="number" class="form-control glass-input">
             </div>
             <div class="col-md-4">
-                <label asp-for="BranchId" class="form-label fw-semibold">Şube ID</label>
-                <input asp-for="BranchId" type="number" class="form-control glass-input" required>
+                <label asp-for="BranchId" class="form-label fw-semibold">Şube</label>
+                <select asp-for="BranchId" class="form-select glass-input" asp-items="@ViewBag.Branches" required>
+                    <option value="">Şube Seçiniz...</option>
+                </select>
             </div>
             <div class="col-md-4">
                 <label asp-for="TransactionDate" class="form-label fw-semibold">İşlem Tarihi</label>

@@ -14,16 +14,18 @@ using BusinessManagement.DTO.SupplierDTOs;
 using BusinessManagement.DTO.TransferDTOs;
 using BusinessManagement.DTO.UnitDTOs;
 using BusinessManagement.DTO.WarehouseMovementDTOs;
+using BusinessManagement.DTO.RolDTOs;
 using BusinessManagement.MVC.Application.Interfaces;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Configuration;
-using Newtonsoft.Json;
+
 using System;
 using System.Collections.Generic;
 using System.Net.Http.Headers;
 using System.Text;
+using Newtonsoft.Json;
 
 namespace BusinessManagement.MVC.Application.Services
 {
@@ -50,6 +52,11 @@ namespace BusinessManagement.MVC.Application.Services
             if (httpContext != null)
             {
                 var accessToken = await httpContext.GetTokenAsync("access_token");
+                if (string.IsNullOrEmpty(accessToken))
+                {
+                    accessToken = httpContext.User.FindFirst("access_token")?.Value;
+                }
+
                 if (!string.IsNullOrEmpty(accessToken))
                 {
                     client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
@@ -83,6 +90,11 @@ namespace BusinessManagement.MVC.Application.Services
             if (httpContext != null)
             {
                 var accessToken = await httpContext.GetTokenAsync("access_token");
+                if (string.IsNullOrEmpty(accessToken))
+                {
+                    accessToken = httpContext.User.FindFirst("access_token")?.Value;
+                }
+
                 if (!string.IsNullOrEmpty(accessToken))
                 {
                     client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
@@ -116,6 +128,11 @@ namespace BusinessManagement.MVC.Application.Services
             if (httpContext != null)
             {
                 var accessToken = await httpContext.GetTokenAsync("access_token");
+                if (string.IsNullOrEmpty(accessToken))
+                {
+                    accessToken = httpContext.User.FindFirst("access_token")?.Value;
+                }
+
                 if (!string.IsNullOrEmpty(accessToken))
                 {
                     client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
@@ -142,13 +159,18 @@ namespace BusinessManagement.MVC.Application.Services
             var baseUrl = _cfg["ApiSettings:BaseUrl"];
             if (string.IsNullOrWhiteSpace(baseUrl))
                 throw new Exception("API Url tanımlı değil");
-            var url = $"{baseUrl.TrimEnd('/')}/CustomerTypes/GetAll";
+            var url = $"{baseUrl.TrimEnd('/')}/CustomerType/GetAll";
             using var client = _httpClientFactory.CreateClient();
 
             var httpContext = _httpContextAccessor.HttpContext;
             if (httpContext != null)
             {
                 var accessToken = await httpContext.GetTokenAsync("access_token");
+                if (string.IsNullOrEmpty(accessToken))
+                {
+                    accessToken = httpContext.User.FindFirst("access_token")?.Value;
+                }
+
                 if (!string.IsNullOrEmpty(accessToken))
                 {
                     client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
@@ -183,6 +205,11 @@ namespace BusinessManagement.MVC.Application.Services
             if (httpContext != null)
             {
                 var accessToken = await httpContext.GetTokenAsync("access_token");
+                if (string.IsNullOrEmpty(accessToken))
+                {
+                    accessToken = httpContext.User.FindFirst("access_token")?.Value;
+                }
+
                 if (!string.IsNullOrEmpty(accessToken))
                 {
                     client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
@@ -216,6 +243,11 @@ namespace BusinessManagement.MVC.Application.Services
             if (httpContext != null)
             {
                 var accessToken = await httpContext.GetTokenAsync("access_token");
+                if (string.IsNullOrEmpty(accessToken))
+                {
+                    accessToken = httpContext.User.FindFirst("access_token")?.Value;
+                }
+
                 if (!string.IsNullOrEmpty(accessToken))
                 {
                     client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
@@ -249,6 +281,11 @@ namespace BusinessManagement.MVC.Application.Services
             if (httpContext != null)
             {
                 var accessToken = await httpContext.GetTokenAsync("access_token");
+                if (string.IsNullOrEmpty(accessToken))
+                {
+                    accessToken = httpContext.User.FindFirst("access_token")?.Value;
+                }
+
                 if (!string.IsNullOrEmpty(accessToken))
                 {
                     client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
@@ -282,6 +319,11 @@ namespace BusinessManagement.MVC.Application.Services
             if (httpContext != null)
             {
                 var accessToken = await httpContext.GetTokenAsync("access_token");
+                if (string.IsNullOrEmpty(accessToken))
+                {
+                    accessToken = httpContext.User.FindFirst("access_token")?.Value;
+                }
+
                 if (!string.IsNullOrEmpty(accessToken))
                 {
                     client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
@@ -315,6 +357,11 @@ namespace BusinessManagement.MVC.Application.Services
             if (httpContext != null)
             {
                 var accessToken = await httpContext.GetTokenAsync("access_token");
+                if (string.IsNullOrEmpty(accessToken))
+                {
+                    accessToken = httpContext.User.FindFirst("access_token")?.Value;
+                }
+
                 if (!string.IsNullOrEmpty(accessToken))
                 {
                     client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
@@ -348,6 +395,11 @@ namespace BusinessManagement.MVC.Application.Services
             if (httpContext != null)
             {
                 var accessToken = await httpContext.GetTokenAsync("access_token");
+                if (string.IsNullOrEmpty(accessToken))
+                {
+                    accessToken = httpContext.User.FindFirst("access_token")?.Value;
+                }
+
                 if (!string.IsNullOrEmpty(accessToken))
                 {
                     client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
@@ -381,6 +433,11 @@ namespace BusinessManagement.MVC.Application.Services
             if (httpContext != null)
             {
                 var accessToken = await httpContext.GetTokenAsync("access_token");
+                if (string.IsNullOrEmpty(accessToken))
+                {
+                    accessToken = httpContext.User.FindFirst("access_token")?.Value;
+                }
+
                 if (!string.IsNullOrEmpty(accessToken))
                 {
                     client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
@@ -414,6 +471,11 @@ namespace BusinessManagement.MVC.Application.Services
             if (httpContext != null)
             {
                 var accessToken = await httpContext.GetTokenAsync("access_token");
+                if (string.IsNullOrEmpty(accessToken))
+                {
+                    accessToken = httpContext.User.FindFirst("access_token")?.Value;
+                }
+
                 if (!string.IsNullOrEmpty(accessToken))
                 {
                     client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
@@ -447,6 +509,11 @@ namespace BusinessManagement.MVC.Application.Services
             if (httpContext != null)
             {
                 var accessToken = await httpContext.GetTokenAsync("access_token");
+                if (string.IsNullOrEmpty(accessToken))
+                {
+                    accessToken = httpContext.User.FindFirst("access_token")?.Value;
+                }
+
                 if (!string.IsNullOrEmpty(accessToken))
                 {
                     client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
@@ -480,6 +547,11 @@ namespace BusinessManagement.MVC.Application.Services
             if (httpContext != null)
             {
                 var accessToken = await httpContext.GetTokenAsync("access_token");
+                if (string.IsNullOrEmpty(accessToken))
+                {
+                    accessToken = httpContext.User.FindFirst("access_token")?.Value;
+                }
+
                 if (!string.IsNullOrEmpty(accessToken))
                 {
                     client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
@@ -513,6 +585,11 @@ namespace BusinessManagement.MVC.Application.Services
             if (httpContext != null)
             {
                 var accessToken = await httpContext.GetTokenAsync("access_token");
+                if (string.IsNullOrEmpty(accessToken))
+                {
+                    accessToken = httpContext.User.FindFirst("access_token")?.Value;
+                }
+
                 if (!string.IsNullOrEmpty(accessToken))
                 {
                     client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
@@ -546,6 +623,11 @@ namespace BusinessManagement.MVC.Application.Services
             if (httpContext != null)
             {
                 var accessToken = await httpContext.GetTokenAsync("access_token");
+                if (string.IsNullOrEmpty(accessToken))
+                {
+                    accessToken = httpContext.User.FindFirst("access_token")?.Value;
+                }
+
                 if (!string.IsNullOrEmpty(accessToken))
                 {
                     client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
@@ -564,6 +646,44 @@ namespace BusinessManagement.MVC.Application.Services
                               ?? new List<ResponseMaterialProcurementDto>();
             return list
                 .Select(b => new SelectListItem { Value = b.Id.ToString(), Text = "Tedarik - " + b.Id })
+                .ToList();
+        }
+
+        public async Task<List<SelectListItem>> GetRolesSelectListAsync()
+        {
+            var baseUrl = _cfg["ApiSettings:BaseUrl"];
+            if (string.IsNullOrWhiteSpace(baseUrl))
+                throw new Exception("API Url tanımlı değil");
+            var url = $"{baseUrl.TrimEnd('/')}/Rol/GetAll";
+            using var client = _httpClientFactory.CreateClient();
+
+            var httpContext = _httpContextAccessor.HttpContext;
+            if (httpContext != null)
+            {
+                var accessToken = await httpContext.GetTokenAsync("access_token");
+                if (string.IsNullOrEmpty(accessToken))
+                {
+                    accessToken = httpContext.User.FindFirst("access_token")?.Value;
+                }
+
+                if (!string.IsNullOrEmpty(accessToken))
+                {
+                    client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
+                }
+            }
+
+            var response = await client.GetAsync(url);
+
+            if (!response.IsSuccessStatusCode)
+            {
+                return new List<SelectListItem>();
+            }
+
+            var json = await response.Content.ReadAsStringAsync();
+            var rolList = JsonConvert.DeserializeObject<List<ResponseRolDto>>(json)
+                              ?? new List<ResponseRolDto>();
+            return rolList
+                .Select(b => new SelectListItem { Value = b.Id.ToString(), Text = b.Name })
                 .ToList();
         }
     }
