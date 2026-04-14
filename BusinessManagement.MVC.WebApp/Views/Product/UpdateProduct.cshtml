@@ -11,16 +11,39 @@
         <p class="text-muted">Ürün bilgilerini güncelleyebilirsiniz.</p>
     </div>
 
-    <form asp-action="UpdateProduct" method="post">
+    <form asp-action="UpdateProduct" method="post" enctype="multipart/form-data">
         <input type="hidden" asp-for="Id" />
+        <input type="hidden" asp-for="PhotoUrl" />
         <div class="row g-3">
+            <div class="col-md-12 mb-3 text-center">
+                @if (!string.IsNullOrEmpty(Model.PhotoUrl))
+                {
+                    <div class="position-relative d-inline-block">
+                        <img src="@Model.PhotoUrl" alt="Mevcut Görsel" class="rounded-3 shadow" style="max-width: 200px; max-height: 200px; object-fit: cover; border: 2px solid rgba(255,255,255,0.1);">
+                        <p class="mt-2 text-muted small">Mevcut Görsel</p>
+                    </div>
+                }
+            </div>
+
             <div class="col-md-6">
                 <label asp-for="Name" class="form-label fw-semibold">Ürün Adı</label>
                 <input asp-for="Name" class="form-control glass-input" required>
             </div>
             <div class="col-md-6">
-                <label asp-for="PhotoUrl" class="form-label fw-semibold">Görsel URL</label>
-                <input asp-for="PhotoUrl" class="form-control glass-input">
+                <label for="PhotoFile" class="form-label fw-semibold">Yeni Görsel (İsteğe Bağlı)</label>
+                <input type="file" name="PhotoFile" id="PhotoFile" class="form-control glass-input" accept="image/*">
+                <div class="mt-2 text-start">
+                    @if (!string.IsNullOrEmpty(Model.PhotoUrl))
+                    {
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="RemovePhoto" id="RemovePhoto" value="true">
+                            <label class="form-check-label text-danger fw-semibold" for="RemovePhoto">
+                                <i class="fa-solid fa-trash-can me-1"></i>Mevcut Fotoğrafı Kaldır
+                            </label>
+                        </div>
+                    }
+                    <small class="text-muted">Boş bırakılırsa mevcut görsel korunur.</small>
+                </div>
             </div>
             
             <div class="col-md-4">

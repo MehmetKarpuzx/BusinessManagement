@@ -11,15 +11,15 @@
         <p class="text-muted">Ürün detaylarını aşağıdan girebilirsiniz.</p>
     </div>
 
-    <form asp-action="AddProduct" method="post">
+    <form asp-action="AddProduct" method="post" enctype="multipart/form-data">
         <div class="row g-3">
             <div class="col-md-6">
                 <label asp-for="Name" class="form-label fw-semibold">Ürün Adı</label>
                 <input asp-for="Name" class="form-control glass-input" placeholder="Ürün adını giriniz..." required>
             </div>
             <div class="col-md-6">
-                <label asp-for="PhotoUrl" class="form-label fw-semibold">Görsel URL</label>
-                <input asp-for="PhotoUrl" class="form-control glass-input" placeholder="https://...">
+                <label for="PhotoFile" class="form-label fw-semibold">Görsel (Dosya Seçin)</label>
+                <input type="file" name="PhotoFile" id="PhotoFile" class="form-control glass-input" accept="image/*">
             </div>
             
             <div class="col-md-4">

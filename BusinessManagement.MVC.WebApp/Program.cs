@@ -33,6 +33,16 @@ if (!app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
+var productPhotosPath = builder.Configuration["FilePaths:ProductPhotos"] ?? @"C:\Uploads\ProductPhotos";
+if (!System.IO.Directory.Exists(productPhotosPath))
+{
+    System.IO.Directory.CreateDirectory(productPhotosPath);
+}
+app.UseStaticFiles(new StaticFileOptions
+{
+    FileProvider = new Microsoft.Extensions.FileProviders.PhysicalFileProvider(productPhotosPath),
+    RequestPath = "/Uploads/ProductPhotos"
+});
 app.UseRouting();
 
 app.UseAuthentication();
